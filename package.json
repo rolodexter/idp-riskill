@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "build": "vite build",
+    "build": "node ./node_modules/vite/bin/vite.js build",
+    "postinstall": "chmod +x ./node_modules/.bin/vite",
     "preview": "vite preview"
   },
   "repository": {
