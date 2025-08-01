@@ -43,8 +43,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     window.addEventListener('resize', checkKpiDensityForBreakpoint);
-    // Ensure micro mode is set on initial page load, after all CSS is applied
+    
+    // Triple-check approach for initial micro mode on mobile devices
+    // 1. Immediate check via requestAnimationFrame
     requestAnimationFrame(checkKpiDensityForBreakpoint);
+    
+    // 2. Explicit mobile check that doesn't rely solely on CSS visibility
+    function forceMicroModeOnMobile() {
+        // Check screen width directly for mobile devices
+        if (window.innerWidth <= 700) {
+            setKpiMicroMode(true);
+        }
+    }
+    requestAnimationFrame(forceMicroModeOnMobile);
+    
+    // 3. Delayed check to ensure CSS has fully applied (especially for mobile/Safari)
+    setTimeout(function() {
+        checkKpiDensityForBreakpoint();
+        forceMicroModeOnMobile();
+    }, 100);
 
 
     if (hamburger && mobileMenuOverlay && closeMobileMenu) {
