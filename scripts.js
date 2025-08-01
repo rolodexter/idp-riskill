@@ -20,10 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     function checkKpiDensityForBreakpoint() {
-        // Use hamburger menu visibility as the source of truth for micro mode
+        // Check both hamburger visibility AND if mobile menu overlay is active
         const hamburger = document.getElementById('hamburger-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        
+        // Check if hamburger is visible via CSS OR if mobile menu is active
         const hamburgerVisible = hamburger && window.getComputedStyle(hamburger).display !== 'none';
-        if (hamburgerVisible) {
+        const menuActive = mobileMenuOverlay && mobileMenuOverlay.classList.contains('active');
+        
+        // If either condition is true, use micro mode
+        if (hamburgerVisible || menuActive) {
             setKpiMicroMode(true);
         } else if (window.innerWidth > 700 && window.innerWidth <= 1000) {
             // Force compact mode for intermediate widths
