@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function updateWidgetDensity(widget, rect) {
     const { width, height } = rect;
     const area = width * height;
+    const aspectRatio = width / height;
     
     // Remove any existing density classes
     widget.classList.remove('micro', 'standard', 'compact', 'expanded');
@@ -189,36 +190,151 @@ function updateWidgetDensity(widget, rect) {
         return;
     }
     
-    // If no overrides, use area-based density
-    if (area < 5000) {
+    // Determine layout orientation based on aspect ratio
+    let orientation = 'balanced';
+    if (aspectRatio > 1.8) {
+        orientation = 'horizontal';
+    } else if (aspectRatio < 0.8) {
+        orientation = 'vertical';
+    }
+    
+    // Add data attribute for orientation-specific styling
+    widget.setAttribute('data-orientation', orientation);
+    
+    // If no overrides, use area-based density with intelligent content prioritization
+    if (area < 6000) {
         widget.classList.add('micro');
         simplifyContent(widget, 'micro');
-    } else if (area < 15000) {
+    } else if (area < 16000) {
         widget.classList.add('compact');
         simplifyContent(widget, 'compact');
     } else if (area < 30000) {
         widget.classList.add('standard');
         simplifyContent(widget, 'standard');
     } else {
-        widget.classList.add('expanded');
-        simplifyContent(widget, 'expanded');
+        // Note: Per strategic guidance, we're no longer using expanded mode for KPI widgets
+        widget.classList.add('standard');
+        simplifyContent(widget, 'standard');
     }
 }
 
-// Function to adjust content based on density mode
+// Function to adjust content based on density mode and strategic content formulas
 function simplifyContent(widget, densityMode) {
     const kpiLabel = widget.querySelector('.kpi-label');
     const kpiTrend = widget.querySelector('.kpi-trend');
+    const kpiValue = widget.querySelector('.kpi-value');
+    const urgencySignal = widget.querySelector('.urgency-signal');
+    const indicator = widget.querySelector('.indicator');
+    const orientation = widget.getAttribute('data-orientation');
     
-    if (densityMode === 'micro') {
-        // Only show essential elements in micro mode
-        if (kpiLabel) kpiLabel.style.display = 'none';
-        if (kpiTrend) kpiTrend.style.display = 'none';
-    } else {
-        // Show all content in other modes
-        if (kpiLabel) kpiLabel.style.display = 'block';
-        if (densityMode === 'standard' || densityMode === 'compact' || densityMode === 'expanded') {
+    // Reset all possible modifications
+    if (kpiLabel) kpiLabel.style.display = '';
+    if (kpiTrend) kpiTrend.style.display = '';
+    if (kpiValue) {
+        kpiValue.style.fontSize = '';
+        kpiValue.style.fontWeight = '';
+    }
+    if (urgencySignal) urgencySignal.style.display = '';
+    
+    // Apply content strategy based on density mode
+    switch(densityMode) {
+        case 'micro':
+            // Micro Mode: Focus on critical alerts and core metrics
+            if (kpiLabel) kpiLabel.style.display = 'none';
+            if (kpiTrend) kpiTrend.style.display = 'none';
+            if (kpiValue) {
+                kpiValue.style.fontSize = 'var(--text-lg)';
+                kpiValue.style.fontWeight = 'var(--font-bold)';
+            }
+            if (widget.classList.contains('crisis')) {
+                // Make crisis widgets pulse in micro mode per strategic notes
+                if (indicator) indicator.classList.add('pulsing-urgent');
+            }
+            break;
+            
+        case 'compact':
+            // Compact Mode: Before/after transformations and key metrics
+            if (kpiLabel) kpiLabel.style.display = 'block';
             if (kpiTrend) kpiTrend.style.display = 'flex';
-        }
+            
+            // Apply orientation-specific layout adjustments
+            if (orientation === 'horizontal') {
+                widget.classList.add('horizontal-layout');
+            } else if (orientation === 'vertical') {
+                widget.classList.add('vertical-layout');
+            }
+            
+            // For transition widgets (showing before→after), enhance visibility with process flow animation
+            if (kpiValue && (kpiValue.textContent.includes('→'))) {
+                kpiValue.classList.add('transition-highlight');
+                
+                // Extract before and after values for process flow visualization
+                const valueParts = kpiValue.textContent.split('→');
+                if (valueParts.length === 2) {
+                    const beforeValue = valueParts[0].trim();
+                    const afterValue = valueParts[1].trim();
+                    
+                    // Create process flow visualization if it doesn't exist
+                    if (!widget.querySelector('.process-flow')) {
+                        const processFlow = document.createElement('div');
+                        processFlow.className = 'process-flow';
+                        processFlow.innerHTML = `
+                            <div class="process-before">${beforeValue}</div>
+                            <div class="process-arrow">
+                                <i class="ph-bold ph-arrow-right"></i>
+                            </div>
+                            <div class="process-after">${afterValue}</div>
+                        `;
+                        
+                        // Add process flow after kpi-trend
+                        const kpiContent = widget.querySelector('.kpi-content');
+                        if (kpiContent) {
+                            kpiContent.appendChild(processFlow);
+                        }
+                    }
+                }
+            }
+            break;
+            
+        case 'standard':
+            // Standard Mode: Progress bars, recovery potential, full context
+            if (kpiLabel) kpiLabel.style.display = 'block';
+            if (kpiTrend) {
+                kpiTrend.style.display = 'flex';
+                
+                // Enhance recovery/automation metrics visualization
+                const trendValue = kpiTrend.querySelector('.trend-value');
+                if (trendValue && trendValue.textContent.includes('%')) {
+                    // Extract percentage value for the progress bar
+                    const percentText = trendValue.textContent;
+                    const percentMatch = percentText.match(/\d+/);
+                    
+                    if (percentMatch) {
+                        const percentValue = parseInt(percentMatch[0]);
+                        // Set the custom property for the progress bar width
+                        trendValue.style.setProperty('--percentage-value', percentValue);
+                        trendValue.classList.add('percentage-highlight');
+                        
+                        // Add automation opportunity visualization
+                        const kpiLabel = widget.querySelector('.kpi-label');
+                        if (kpiLabel && (kpiLabel.textContent.includes('Documents') || 
+                                         kpiLabel.textContent.includes('Dates'))) {
+                            widget.classList.add('automation-opportunity');
+                        }
+                        
+                        // Add transformation visualization
+                        if (widget.classList.contains('improvement') || 
+                            widget.classList.contains('optimization')) {
+                            widget.classList.add('transformation-highlight');
+                        }
+                    }
+                }
+            }
+            break;
+    }
+    
+    // Special treatment for crisis widgets across all modes
+    if (widget.classList.contains('crisis')) {
+        widget.classList.add('priority-content');
     }
 }
