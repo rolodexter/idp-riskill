@@ -42,7 +42,22 @@ document.addEventListener('DOMContentLoaded', function() {
             setKpiMicroMode(false);
         }
     }
-    window.addEventListener('resize', checkKpiDensityForBreakpoint);
+    // Enhanced resize handler with debouncing and forced rechecks
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        // Immediate check for quicker feedback
+        requestAnimationFrame(function() {
+            checkKpiDensityForBreakpoint();
+            forceMicroModeOnMobile();
+        });
+        
+        // Delayed check to ensure CSS media queries have been fully applied
+        resizeTimer = setTimeout(function() {
+            checkKpiDensityForBreakpoint();
+            forceMicroModeOnMobile();
+        }, 150);
+    });
     
     // Triple-check approach for initial micro mode on mobile devices
     // 1. Immediate check via requestAnimationFrame
