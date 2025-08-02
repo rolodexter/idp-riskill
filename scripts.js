@@ -166,16 +166,39 @@ function updateWidgetDensity(widget, rect) {
     // Remove any existing density classes
     widget.classList.remove('micro', 'standard', 'compact', 'expanded');
     
-    // Assign appropriate density class based on available area
+    // Check if we should override based on window width
+    if (window.innerWidth <= 700) {
+        // Force micro mode on small screens
+        widget.classList.add('micro');
+        simplifyContent(widget, 'micro');
+        return;
+    }
+    
+    // Check if hamburger menu is active - another condition for forcing micro mode
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    if (mobileMenuOverlay && mobileMenuOverlay.classList.contains('active')) {
+        widget.classList.add('micro');
+        simplifyContent(widget, 'micro');
+        return;
+    }
+    
+    // Check if we're in the compact breakpoint range (701-1000px)
+    if (window.innerWidth > 700 && window.innerWidth <= 1000) {
+        widget.classList.add('compact');
+        simplifyContent(widget, 'compact');
+        return;
+    }
+    
+    // If no overrides, use area-based density
     if (area < 5000) {
         widget.classList.add('micro');
         simplifyContent(widget, 'micro');
-    } else if (area < 20000) {
-        widget.classList.add('standard');
-        simplifyContent(widget, 'standard');
-    } else if (area < 50000) {
+    } else if (area < 15000) {
         widget.classList.add('compact');
         simplifyContent(widget, 'compact');
+    } else if (area < 30000) {
+        widget.classList.add('standard');
+        simplifyContent(widget, 'standard');
     } else {
         widget.classList.add('expanded');
         simplifyContent(widget, 'expanded');
