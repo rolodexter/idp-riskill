@@ -338,3 +338,91 @@ function simplifyContent(widget, densityMode) {
         widget.classList.add('priority-content');
     }
 }
+
+// Enhanced Widget Functionality for Financial Anomalies and Supply Chain Management
+document.addEventListener('DOMContentLoaded', function() {
+    // Financial Anomalies Widget - Filter Button Toggle
+    const filterBtn = document.querySelector('.financial-anomalies .filter-btn');
+    const filterPanel = document.querySelector('.financial-anomalies .filter-panel');
+    
+    if (filterBtn && filterPanel) {
+        filterBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            filterPanel.style.display = filterPanel.style.display === 'none' ? 'block' : 'none';
+        });
+        
+        // Close filter panel when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!filterPanel.contains(e.target) && e.target !== filterBtn) {
+                filterPanel.style.display = 'none';
+            }
+        });
+        
+        // Filter checkboxes functionality
+        const filterCheckboxes = filterPanel.querySelectorAll('input[type="checkbox"]');
+        filterCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const filterType = this.parentElement.textContent.trim().toLowerCase();
+                const anomalyItems = document.querySelectorAll('.anomaly-item');
+                
+                anomalyItems.forEach(item => {
+                    const itemText = item.textContent.toLowerCase();
+                    if (itemText.includes(filterType)) {
+                        item.style.display = this.checked ? 'flex' : 'none';
+                    }
+                });
+            });
+        });
+    }
+    
+    // Supply Chain Management Widget - Dropdown Toggle
+    const supplyChainWidget = document.querySelector('.kpi-widget.supply-chain');
+    const supplyChainDropdown = document.querySelector('.kpi-dropdown');
+    
+    if (supplyChainWidget && supplyChainDropdown) {
+        supplyChainWidget.addEventListener('click', function(e) {
+            e.stopPropagation();
+            supplyChainDropdown.style.display = supplyChainDropdown.style.display === 'none' ? 'block' : 'none';
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!supplyChainDropdown.contains(e.target) && !supplyChainWidget.contains(e.target)) {
+                supplyChainDropdown.style.display = 'none';
+            }
+        });
+        
+        // Add hover effect to supplier items
+        const supplierItems = document.querySelectorAll('.supplier-item');
+        supplierItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(5px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+    }
+    
+    // Expand button functionality for Financial Anomalies widget
+    const expandBtn = document.querySelector('.financial-anomalies .expand-btn');
+    const financialAnomaliesWidget = document.querySelector('.financial-anomalies');
+    
+    if (expandBtn && financialAnomaliesWidget) {
+        expandBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            financialAnomaliesWidget.classList.toggle('expanded');
+            
+            // Update icon based on expanded state
+            const icon = this.querySelector('i');
+            if (financialAnomaliesWidget.classList.contains('expanded')) {
+                icon.classList.remove('ph-arrows-out');
+                icon.classList.add('ph-arrows-in');
+            } else {
+                icon.classList.remove('ph-arrows-in');
+                icon.classList.add('ph-arrows-out');
+            }
+        });
+    }
+});

@@ -71,20 +71,20 @@
                 </div>
             </div>
 
-            <!-- Business Unit KPI Widget -->
-            <div class="kpi-widget optimization">
-                <div class="indicator green-pulse"></div>
+            <!-- Data Quality KPI Widget -->
+            <div class="kpi-widget data-quality">
+                <div class="indicator blue-pulse"></div>
                 <div class="kpi-content">
-                    <div class="kpi-value">P001→92%</div>
-                    <div class="kpi-label">Efficiency</div>
+                    <div class="kpi-value">78.4%</div>
+                    <div class="kpi-label">Data Quality</div>
                     <div class="kpi-trend">
                         <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+55%</span>
-                        <span class="trend-label">performance</span>
+                        <span class="trend-value">+12.7%</span>
+                        <span class="trend-label">improvement</span>
                     </div>
                 </div>
                 <div class="urgency-signal">
-                    <i class="ph-fill ph-chart-bar"></i>
+                    <i class="ph-fill ph-check-circle"></i>
                 </div>
             </div>
 
@@ -105,8 +105,8 @@
                 </div>
             </div>
 
-            <!-- Vendor Risk KPI Widget -->
-            <div class="kpi-widget warning">
+            <!-- Supply Chain Management KPI Widget -->
+            <div class="kpi-widget supply-chain warning">
                 <div class="indicator amber-fill"></div>
                 <div class="kpi-content">
                     <div class="kpi-value">6/43</div>
@@ -119,6 +119,38 @@
                 </div>
                 <div class="urgency-signal">
                     <i class="ph-fill ph-factory"></i>
+                </div>
+                <div class="kpi-dropdown" style="display: none;">
+                    <div class="supply-chain-details">
+                        <div class="supply-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Inventory</span>
+                                <span class="metric-value">72%</span>
+                            </div>
+                            <div class="metric warning">
+                                <span class="metric-label">Lead Time</span>
+                                <span class="metric-value">+14d</span>
+                            </div>
+                            <div class="metric critical">
+                                <span class="metric-label">Stock Risk</span>
+                                <span class="metric-value">High</span>
+                            </div>
+                        </div>
+                        <div class="supplier-list">
+                            <div class="supplier-item critical">
+                                <span class="supplier-name">Acme Logistics</span>
+                                <span class="supplier-status">Low Stock</span>
+                            </div>
+                            <div class="supplier-item warning">
+                                <span class="supplier-name">Global Freight</span>
+                                <span class="supplier-status">Delayed</span>
+                            </div>
+                            <div class="supplier-item">
+                                <span class="supplier-name">Maritime Shipping</span>
+                                <span class="supplier-status">On Track</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -204,7 +236,6 @@
                 <!-- IDP Maritime Intelligence Analysis Header -->
                 <div class="main-content-header">
                     <h2>IDP Maritime Intelligence Analysis</h2>
-                    <p class="tagline">"Data Chaos → Automation Paradise"</p>
                 </div>
                 
                 <!-- Automation Opportunity Analysis Section -->
@@ -267,20 +298,67 @@
             <!-- Right Zone -->
             <aside class="right-zone">
                 <!-- Anomalies Widget -->
-                <div class="placeholder-widget">
-                    <div class="placeholder-header">Anomalies</div>
+                <div class="placeholder-widget financial-anomalies">
+                    <div class="placeholder-header">
+                        <span>Financial Anomalies</span>
+                        <div class="widget-controls">
+                            <button class="filter-btn" title="Filter Anomalies"><i class="ph ph-funnel"></i></button>
+                            <button class="expand-btn" title="Expand View"><i class="ph ph-arrows-out"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Filter Panel (hidden by default) -->
+                    <div class="filter-panel" style="display: none;">
+                        <div class="filter-options">
+                            <label><input type="checkbox" checked> Missing Dates</label>
+                            <label><input type="checkbox" checked> Unlinked Transactions</label>
+                            <label><input type="checkbox" checked> Spending Patterns</label>
+                            <label><input type="checkbox" checked> Resource Allocation</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Mini Trend Chart -->
+                    <div class="mini-trend-chart">
+                        <div class="chart-title">Anomaly Trend (30 Days)</div>
+                        <div class="chart-container">
+                            <div class="chart-bar" style="height: 30%;"></div>
+                            <div class="chart-bar" style="height: 45%;"></div>
+                            <div class="chart-bar" style="height: 25%;"></div>
+                            <div class="chart-bar" style="height: 60%;"></div>
+                            <div class="chart-bar" style="height: 40%;"></div>
+                            <div class="chart-bar highlighted" style="height: 75%;"></div>
+                            <div class="chart-bar" style="height: 35%;"></div>
+                        </div>
+                    </div>
+                    
                     <div class="placeholder-content">
-                        <div class="anomaly-item">
-                            <i class="ph ph-warning-circle"></i>
-                            <span>Unusual transaction pattern detected in P001</span>
+                        <div class="anomaly-item critical">
+                            <i class="ph ph-calendar-x"></i>
+                            <div class="anomaly-details">
+                                <span>Missing transaction dates (7)</span>
+                                <small>Aug 1-3, 2025 • High Impact</small>
+                            </div>
+                        </div>
+                        <div class="anomaly-item warning">
+                            <i class="ph ph-link-break"></i>
+                            <div class="anomaly-details">
+                                <span>Unlinked transactions</span>
+                                <small>3 invoices without PO • $47,320</small>
+                            </div>
                         </div>
                         <div class="anomaly-item">
-                            <i class="ph ph-warning-circle"></i>
-                            <span>Vendor compliance deviation: Acme Corp</span>
+                            <i class="ph ph-chart-line-up"></i>
+                            <div class="anomaly-details">
+                                <span>Unusual spending pattern</span>
+                                <small>IT Services +43% vs. forecast</small>
+                            </div>
                         </div>
                         <div class="anomaly-item">
-                            <i class="ph ph-warning-circle"></i>
-                            <span>Resource allocation imbalance in Q3</span>
+                            <i class="ph ph-scales"></i>
+                            <div class="anomaly-details">
+                                <span>Resource allocation imbalance</span>
+                                <small>Q3 budget variance detected</small>
+                            </div>
                         </div>
                     </div>
                 </div>

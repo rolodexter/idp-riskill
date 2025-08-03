@@ -359,3 +359,261 @@
 .reset-demo i {
     font-size: 1rem;
 }
+
+/* Financial Anomalies Widget Enhancements */
+.financial-anomalies .placeholder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.widget-controls {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.widget-controls button {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.widget-controls button:hover {
+    background: var(--glass-background);
+    color: var(--color-text-primary);
+}
+
+.filter-panel {
+    background: var(--glass-bg);
+    border: var(--border-subtle);
+    border-radius: 8px;
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.filter-options label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+.mini-trend-chart {
+    margin: var(--spacing-sm) 0;
+    padding: var(--spacing-sm);
+    background: var(--glass-background);
+    border-radius: 8px;
+    border: var(--border-subtle);
+}
+
+.chart-title {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.chart-container {
+    display: flex;
+    align-items: flex-end;
+    height: 40px;
+    gap: 4px;
+}
+
+.chart-bar {
+    flex: 1;
+    background: var(--color-accent-blue-subtle);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.chart-bar.highlighted {
+    background: var(--color-accent-blue);
+}
+
+.anomaly-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.anomaly-item:hover {
+    background: var(--glass-background);
+}
+
+.anomaly-item i {
+    color: var(--color-accent-amber);
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.anomaly-item.critical i {
+    color: var(--color-accent-red);
+}
+
+.anomaly-item.warning i {
+    color: var(--color-accent-amber);
+}
+
+.anomaly-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.anomaly-details span {
+    font-size: var(--text-sm);
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.anomaly-details small {
+    font-size: var(--text-xxs);
+    color: var(--color-text-tertiary);
+}
+
+/* Supply Chain Management Widget Enhancements */
+.kpi-widget.supply-chain {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.kpi-widget.supply-chain:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.kpi-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 280px;
+    background: var(--glass-bg);
+    border: var(--border-medium);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    z-index: 10;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.supply-chain-details {
+    padding: var(--spacing-sm);
+}
+
+.supply-metrics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: var(--border-subtle);
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-xs);
+    border-radius: 4px;
+    background: var(--glass-background);
+    min-width: 70px;
+}
+
+.metric.warning {
+    background: var(--color-accent-amber-subtle);
+}
+
+.metric.critical {
+    background: var(--color-accent-red-subtle);
+}
+
+.metric-label {
+    font-size: var(--text-xxs);
+    color: var(--color-text-secondary);
+    margin-bottom: 2px;
+}
+
+.metric-value {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-text-primary);
+}
+
+.supplier-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.supplier-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 4px;
+    background: var(--glass-background);
+    transition: all 0.2s ease;
+}
+
+.supplier-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.supplier-item.warning {
+    border-left: 3px solid var(--color-accent-amber);
+}
+
+.supplier-item.critical {
+    border-left: 3px solid var(--color-accent-red);
+}
+
+.supplier-name {
+    font-size: var(--text-xs);
+    color: var(--color-text-primary);
+}
+
+.supplier-status {
+    font-size: var(--text-xxs);
+    color: var(--color-text-tertiary);
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: var(--glass-background);
+}
+
+/* Data Quality KPI Widget Styles */
+.kpi-widget.data-quality .indicator.blue-pulse {
+    background-color: var(--color-accent-blue);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(43, 127, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(43, 127, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(43, 127, 255, 0);
+    }
+}
