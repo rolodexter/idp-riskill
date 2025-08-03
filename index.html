@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDP Maritime Safety Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles-additions.css">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css" />
+    <title>Riskill Dashboard</title>
     <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
@@ -34,8 +36,8 @@
                 <div class="menu-item"><span>Settings</span></div>
             </div>
             <div class="user-info">
-                <span class="user-name">Eduardo Marinelli</span>
-                <div class="user-avatar">EM</div>
+                <span class="user-name">Matthias Weber</span>
+                <div class="user-avatar">MW</div>
             </div>
         </nav>
         <div id="mobile-menu-overlay" class="mobile-menu-overlay">
@@ -52,99 +54,530 @@
 
         <!-- KPI Widget Row -->
         <section class="kpi-row">
-            <!-- 5.16B Crisis KPI Widget -->
+            <!-- Deal Intelligence KPI Widget -->
             <div class="kpi-widget crisis">
                 <div class="indicator pulsing-red"></div>
                 <div class="kpi-content">
-                    <div class="kpi-value">5.16B</div>
-                    <div class="kpi-label">Unlinked Transactions</div>
+                    <div class="kpi-value">71.3T</div>
+                    <div class="kpi-label">Deal Value</div>
                     <div class="kpi-trend">
                         <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+67%</span>
-                        <span class="trend-label">recovery potential</span>
+                        <span class="trend-value">+516B</span>
+                        <span class="trend-label">pesos</span>
                     </div>
                 </div>
                 <div class="urgency-signal">
-                    <i class="ph-fill ph-warning-circle"></i>
+                    <i class="ph-fill ph-chart-line-up"></i>
                 </div>
             </div>
 
-            <!-- Missing Dates KPI Widget -->
-            <div class="kpi-widget warning">
-                <div class="indicator amber-fill"></div>
-                <div class="kpi-content">
-                    <div class="kpi-value">847</div>
-                    <div class="kpi-label">Missing Dates</div>
-                    <div class="kpi-trend">
-                        <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+89%</span>
-                        <span class="trend-label">recoverable</span>
-                    </div>
-                </div>
-                <div class="urgency-signal">
-                    <i class="ph-fill ph-calendar-blank"></i>
-                </div>
-            </div>
-
-            <!-- OCR Opportunity KPI Widget -->
-            <div class="kpi-widget opportunity">
-                <div class="indicator green-glow"></div>
-                <div class="kpi-content">
-                    <div class="kpi-value">340+</div>
-                    <div class="kpi-label">Manual Documents</div>
-                    <div class="kpi-trend">
-                        <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+92%</span>
-                        <span class="trend-label">automatable</span>
-                    </div>
-                </div>
-                <div class="urgency-signal">
-                    <i class="ph-fill ph-file-text"></i>
-                </div>
-            </div>
-
-            <!-- Cycle Time KPI Widget -->
-            <div class="kpi-widget improvement">
-                <div class="indicator blue-speed"></div>
-                <div class="kpi-content">
-                    <div class="kpi-value">23→3</div>
-                    <div class="kpi-label">Day Cycle</div>
-                    <div class="kpi-trend">
-                        <span class="trend-arrow">↓</span>
-                        <span class="trend-value">87%</span>
-                        <span class="trend-label">time reduction</span>
-                    </div>
-                </div>
-                <div class="urgency-signal">
-                    <i class="ph-fill ph-lightning"></i>
-                </div>
-            </div>
-
-            <!-- Touchpoints KPI Widget -->
+            <!-- Business Unit KPI Widget -->
             <div class="kpi-widget optimization">
                 <div class="indicator green-pulse"></div>
                 <div class="kpi-content">
-                    <div class="kpi-value">156→12</div>
-                    <div class="kpi-label">Touchpoints</div>
+                    <div class="kpi-value">P001→92%</div>
+                    <div class="kpi-label">Efficiency</div>
                     <div class="kpi-trend">
-                        <span class="trend-arrow">↓</span>
-                        <span class="trend-value">92%</span>
-                        <span class="trend-label">reduction</span>
+                        <span class="trend-arrow">↑</span>
+                        <span class="trend-value">+55%</span>
+                        <span class="trend-label">performance</span>
                     </div>
                 </div>
                 <div class="urgency-signal">
-                    <i class="ph-fill ph-cube"></i>
+                    <i class="ph-fill ph-chart-bar"></i>
+                </div>
+            </div>
+
+            <!-- Customers KPI Widget -->
+            <div class="kpi-widget opportunity">
+                <div class="indicator green-glow"></div>
+                <div class="kpi-content">
+                    <div class="kpi-value">881→47</div>
+                    <div class="kpi-label">Gov Contracts</div>
+                    <div class="kpi-trend">
+                        <span class="trend-arrow">↑</span>
+                        <span class="trend-value">+600%</span>
+                        <span class="trend-label">growth</span>
+                    </div>
+                </div>
+                <div class="urgency-signal">
+                    <i class="ph-fill ph-users"></i>
+                </div>
+            </div>
+
+            <!-- Vendor Risk KPI Widget -->
+            <div class="kpi-widget warning">
+                <div class="indicator amber-fill"></div>
+                <div class="kpi-content">
+                    <div class="kpi-value">6/43</div>
+                    <div class="kpi-label">Critical Suppliers</div>
+                    <div class="kpi-trend">
+                        <span class="trend-arrow">!</span>
+                        <span class="trend-value">87%</span>
+                        <span class="trend-label">dependency</span>
+                    </div>
+                </div>
+                <div class="urgency-signal">
+                    <i class="ph-fill ph-factory"></i>
+                </div>
+            </div>
+
+            <!-- Cross-Entity Opportunities KPI Widget -->
+            <div class="kpi-widget improvement">
+                <div class="indicator blue-speed"></div>
+                <div class="kpi-content">
+                    <div class="kpi-value">BIC→IDP</div>
+                    <div class="kpi-label">Strategy Transfer</div>
+                    <div class="kpi-trend">
+                        <span class="trend-arrow">↑</span>
+                        <span class="trend-value">+5.7T</span>
+                        <span class="trend-label">potential</span>
+                    </div>
+                </div>
+                <div class="urgency-signal">
+                    <i class="ph-fill ph-arrows-left-right"></i>
                 </div>
             </div>
         </section>
 
-        <!-- Main content placeholder -->
-        <main class="main-content">
-            <!-- Main dashboard content will go here -->
-            <div class="placeholder-text">Main Dashboard Content Area</div>
-        </main>
+        <!-- Dashboard Layout with Sidebar, Main Content, and Right Zone -->
+        <div class="dashboard-layout">
+            <!-- Left Sidebar -->
+            <aside class="left-sidebar">
+                <!-- User Profile Widget -->
+                <div class="placeholder-widget user-profile">
+                    <div class="user-profile-header">
+                        <div class="user-avatar">
+                            <i class="ph ph-user-circle"></i>
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">Matthias Weber</div>
+                            <div class="user-role">Maritime Analyst</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Current Tasks Section -->
+                    <div class="user-tasks">
+                        <h3>Current Tasks</h3>
+                        <ul class="task-list">
+                            <li><i class="ph ph-check-square"></i> Review IDP Data</li>
+                            <li><i class="ph ph-check-square"></i> Risk Analysis</li>
+                            <li><i class="ph ph-check-square"></i> Automation Ops</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- AI Assistant Widget -->
+                <div class="placeholder-widget ai-assistant">
+                    <div class="placeholder-header">AI Assistant</div>
+                    <div class="placeholder-content">
+                        <div class="ai-assistant-profile">
+                            <div class="assistant-avatar">
+                                <i class="ph ph-robot"></i>
+                            </div>
+                            <div class="assistant-info">
+                                <div class="assistant-name">Eduardo</div>
+                                <div class="assistant-status online">Active</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Riskill Agents Widget -->
+                <div class="placeholder-widget">
+                    <div class="placeholder-header">Riskill Agents</div>
+                    <div class="placeholder-content">
+                        <div class="agent-item">
+                            <i class="ph ph-robot"></i>
+                            <span>Risk Assessment Agent</span>
+                        </div>
+                        <div class="agent-item">
+                            <i class="ph ph-robot"></i>
+                            <span>Vendor Analysis Agent</span>
+                        </div>
+                        <div class="agent-item">
+                            <i class="ph ph-robot"></i>
+                            <span>Deal Intelligence Agent</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Sources Widget -->
+                <div class="placeholder-widget">
+                    <div class="placeholder-header">Data Sources</div>
+                    <div class="placeholder-content">
+                        <div class="source-item" id="erp-source">
+                            <i class="ph ph-database"></i>
+                            <span>Enterprise ERP</span>
+                        </div>
+                        <div class="source-item" id="vendor-source">
+                            <i class="ph ph-database"></i>
+                            <span>Vendor Database</span>
+                        </div>
+                        <div class="source-item" id="market-source">
+                            <i class="ph ph-database"></i>
+                            <span>Market Intelligence</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <!-- IDP Maritime Intelligence Analysis Header -->
+                <div class="main-content-header">
+                    <h2>IDP Maritime Intelligence Analysis</h2>
+                    <p class="tagline">"Data Chaos → Automation Paradise"</p>
+                </div>
+                
+                <!-- Automation Opportunity Analysis Section -->
+                <div class="placeholder-widget">
+                    <div class="placeholder-header">
+                        <i class="ph ph-target"></i>
+                        Automation Opportunity Analysis
+                    </div>
+                    <div class="analysis-content">
+                        <div class="challenges-column">
+                            <h3>Current Challenges</h3>
+                            <ul class="challenge-list">
+                                <li><i class="ph ph-warning-circle"></i> 67% missing dates</li>
+                                <li><i class="ph ph-warning-circle"></i> 840B+ peso unlinked</li>
+                                <li><i class="ph ph-warning-circle"></i> Manual workflows</li>
+                                <li><i class="ph ph-warning-circle"></i> Multi-entity gaps</li>
+                            </ul>
+                        </div>
+                        <div class="solutions-column">
+                            <h3>AI-Powered Solutions</h3>
+                            <ul class="solution-list">
+                                <li><i class="ph ph-check-circle"></i> Automated date inference</li>
+                                <li><i class="ph ph-check-circle"></i> Intelligent transaction linking</li>
+                                <li><i class="ph ph-check-circle"></i> Predictive workflow</li>
+                                <li><i class="ph ph-check-circle"></i> Real-time insights</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Competitive Advantage Transformation Section -->
+                <div class="placeholder-widget">
+                    <div class="placeholder-header">
+                        <i class="ph ph-rocket"></i>
+                        Competitive Advantage Transformation
+                    </div>
+                    <div class="placeholder-content">
+                        <p class="transformation-narrative">
+                            Transform IDP's data quality challenges into automation-powered competitive advantages
+                            through AI-driven maritime intelligence workflows and predictive analytics.
+                        </p>
+                        <div class="transformation-metrics">
+                            <div class="metric">
+                                <span class="metric-value">67%</span>
+                                <span class="metric-label">Data Recovery</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">840B</span>
+                                <span class="metric-label">Peso Recovery</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">47%</span>
+                                <span class="metric-label">Efficiency Gain</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Zone -->
+            <aside class="right-zone">
+                <!-- Anomalies Widget -->
+                <div class="placeholder-widget">
+                    <div class="placeholder-header">Anomalies</div>
+                    <div class="placeholder-content">
+                        <div class="anomaly-item">
+                            <i class="ph ph-warning-circle"></i>
+                            <span>Unusual transaction pattern detected in P001</span>
+                        </div>
+                        <div class="anomaly-item">
+                            <i class="ph ph-warning-circle"></i>
+                            <span>Vendor compliance deviation: Acme Corp</span>
+                        </div>
+                        <div class="anomaly-item">
+                            <i class="ph ph-warning-circle"></i>
+                            <span>Resource allocation imbalance in Q3</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Opportunities Widget -->
+                <div class="placeholder-widget">
+                    <div class="placeholder-header">Opportunities</div>
+                    <div class="placeholder-content">
+                        <div class="opportunity-item">
+                            <i class="ph ph-lightbulb"></i>
+                            <span>Cross-selling potential with Gov sector clients</span>
+                        </div>
+                        <div class="opportunity-item">
+                            <i class="ph ph-lightbulb"></i>
+                            <span>Vendor consolidation could save 12.7%</span>
+                        </div>
+                        <div class="opportunity-item">
+                            <i class="ph ph-lightbulb"></i>
+                            <span>Predictive maintenance savings: 3.2M</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        
+        <!-- Module Row - Maritime Intelligence Modules -->
+        <div class="module-row">
+            <!-- Risk Engine Module -->
+            <div class="module-item">
+                <div class="module-icon">
+                    <i class="ph ph-warning"></i>
+                </div>
+                <div class="module-name">RISK ENGINE</div>
+                <div class="module-description">Risk Management Algorithms</div>
+            </div>
+            
+            <!-- Portfolio Analytics Module -->
+            <div class="module-item">
+                <div class="module-icon">
+                    <i class="ph ph-chart-bar"></i>
+                </div>
+                <div class="module-name">PORTFOLIO ANALYTICS</div>
+                <div class="module-description">Analytics Tools</div>
+            </div>
+            
+            <!-- Market Intelligence Module -->
+            <div class="module-item">
+                <div class="module-icon">
+                    <i class="ph ph-trend-up"></i>
+                </div>
+                <div class="module-name">MARKET INTELLIGENCE</div>
+                <div class="module-description">Market Intelligence</div>
+            </div>
+            
+            <!-- Operational Metrics Module -->
+            <div class="module-item">
+                <div class="module-icon">
+                    <i class="ph ph-activity"></i>
+                </div>
+                <div class="module-name">OPERATIONAL METRICS</div>
+                <div class="module-description">Activity Monitoring</div>
+            </div>
+            
+            <!-- Maritime Routes Module -->
+            <div class="module-item">
+                <div class="module-icon">
+                    <i class="ph ph-map-pin"></i>
+                </div>
+                <div class="module-name">MARITIME ROUTES</div>
+                <div class="module-description">Routes Planning</div>
+            </div>
+            
+            <!-- Fleet Management Module -->
+            <div class="module-item">
+                <div class="module-icon">
+                    <i class="ph ph-boat"></i>
+                </div>
+                <div class="module-name">FLEET MANAGEMENT</div>
+                <div class="module-description">Real-time tracking</div>
+            </div>
+        </div>
     </div>
 
+    <!-- SQL Modal -->
+    <div class="modal-overlay" id="sql-modal-overlay">
+        <div class="sql-modal">
+            <div class="sql-modal-header">
+                <div class="sql-modal-title">
+                    <i class="ph ph-database"></i>
+                    <span>SQL Server Management Studio</span>
+                </div>
+                <button class="sql-modal-close" id="sql-modal-close">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="sql-modal-body">
+                <div class="sql-sidebar">
+                    <ul class="sql-table-list">
+                        <li class="sql-table-item active" data-table="transactions">
+                            <i class="ph ph-table"></i>
+                            <span>transactions</span>
+                        </li>
+                        <li class="sql-table-item" data-table="vendors">
+                            <i class="ph ph-table"></i>
+                            <span>vendors</span>
+                        </li>
+                        <li class="sql-table-item" data-table="contracts">
+                            <i class="ph ph-table"></i>
+                            <span>contracts</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sql-table-content" id="sql-table-content">
+                    <!-- Table content will be loaded dynamically -->
+                </div>
+            </div>
+            <div class="sql-footer">
+                <div class="sql-status">Connected to: Enterprise ERP Database</div>
+                <div class="sql-actions">
+                    <button class="sql-button">Export</button>
+                    <button class="sql-button primary">Run Query</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Demo Button -->
+    <button class="reset-demo" id="reset-demo">
+        <i class="ph ph-arrows-clockwise"></i>
+        Reset Demo
+    </button>
+
     <script src="scripts.js" type="module"></script>
+    <script>
+        // Table data
+        const tableData = {
+            transactions: {
+                title: 'Transactions',
+                description: 'Maritime transaction records with vessel, cargo, and financial details',
+                columns: ['transaction_id', 'date', 'vessel_id', 'cargo_type', 'amount', 'currency', 'status'],
+                rows: [
+                    ['TRX-7842', '2025-07-28', 'VSL-001', 'Container', '156,000', 'PESO', 'Completed'],
+                    ['TRX-7843', '2025-07-29', 'VSL-002', 'Bulk', '92,500', 'PESO', 'Pending'],
+                    ['TRX-7844', '2025-07-30', 'VSL-003', 'Container', '210,000', 'PESO', 'Completed'],
+                    ['TRX-7845', '2025-07-31', 'VSL-001', 'Container', '178,000', 'PESO', 'Processing'],
+                    ['TRX-7846', '2025-08-01', 'VSL-004', 'Liquid', '320,000', 'PESO', 'Completed']
+                ]
+            },
+            vendors: {
+                title: 'Vendors',
+                description: 'Supplier and service provider information for maritime operations',
+                columns: ['vendor_id', 'name', 'category', 'risk_score', 'contract_value', 'status'],
+                rows: [
+                    ['VND-001', 'Acme Corp', 'Equipment', '72', '1.2M', 'Active'],
+                    ['VND-002', 'Maritime Supplies Ltd', 'Consumables', '85', '840K', 'Active'],
+                    ['VND-003', 'Global Shipping Co', 'Logistics', '64', '2.1M', 'Under Review'],
+                    ['VND-004', 'Tech Marine Systems', 'Technology', '91', '950K', 'Active'],
+                    ['VND-005', 'Oceanic Maintenance', 'Services', '78', '1.5M', 'Active']
+                ]
+            },
+            contracts: {
+                title: 'Contracts',
+                description: 'Legal agreements with vendors, partners, and clients',
+                columns: ['contract_id', 'title', 'party', 'start_date', 'end_date', 'value', 'status'],
+                rows: [
+                    ['CNT-001', 'Equipment Supply', 'Acme Corp', '2025-01-15', '2025-12-31', '1.2M', 'Active'],
+                    ['CNT-002', 'Route Partnership', 'Global Shipping', '2025-03-01', '2026-02-28', '2.1M', 'Active'],
+                    ['CNT-003', 'Gov Contract 881', 'Gov Agency', '2025-06-15', '2025-12-15', '4.7M', 'Active'],
+                    ['CNT-004', 'Tech Implementation', 'Tech Marine', '2025-04-10', '2025-10-10', '950K', 'Active'],
+                    ['CNT-005', 'Maintenance Service', 'Oceanic', '2025-02-01', '2026-01-31', '1.5M', 'Active']
+                ]
+            }
+        };
+
+        // Function to render table content
+        function renderTable(tableId) {
+            const tableInfo = tableData[tableId];
+            const content = document.getElementById('sql-table-content');
+            
+            let html = `
+                <div class="sql-table-header">
+                    <h3>${tableInfo.title}</h3>
+                    <div class="sql-table-description">${tableInfo.description}</div>
+                </div>
+                <table class="sql-table">
+                    <thead>
+                        <tr>
+            `;
+            
+            // Add table headers
+            tableInfo.columns.forEach(column => {
+                html += `<th>${column}</th>`;
+            });
+            
+            html += `
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            // Add table rows
+            tableInfo.rows.forEach(row => {
+                html += '<tr>';
+                row.forEach(cell => {
+                    html += `<td>${cell}</td>`;
+                });
+                html += '</tr>';
+            });
+            
+            html += `
+                    </tbody>
+                </table>
+            `;
+            
+            content.innerHTML = html;
+        }
+
+        // Initialize with transactions table
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize with transactions table
+            renderTable('transactions');
+            
+            // Handle table item clicks
+            const tableItems = document.querySelectorAll('.sql-table-item');
+            tableItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    tableItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Render the selected table
+                    renderTable(this.getAttribute('data-table'));
+                });
+            });
+            
+            // Handle data source clicks
+            const dataSources = document.querySelectorAll('.source-item');
+            const modalOverlay = document.getElementById('sql-modal-overlay');
+            
+            dataSources.forEach(source => {
+                source.addEventListener('click', function() {
+                    modalOverlay.classList.add('active');
+                    
+                    // Update SQL status based on which source was clicked
+                    const sourceName = this.querySelector('span').textContent;
+                    document.querySelector('.sql-status').textContent = `Connected to: ${sourceName} Database`;
+                    
+                    // If it's the Enterprise ERP, show transactions by default
+                    if (this.id === 'erp-source') {
+                        document.querySelector('.sql-table-item[data-table="transactions"]').click();
+                    }
+                    // If it's the Vendor Database, show vendors by default
+                    else if (this.id === 'vendor-source') {
+                        document.querySelector('.sql-table-item[data-table="vendors"]').click();
+                    }
+                    // If it's Market Intelligence, show contracts by default
+                    else if (this.id === 'market-source') {
+                        document.querySelector('.sql-table-item[data-table="contracts"]').click();
+                    }
+                });
+            });
+            
+            // Close modal
+            document.getElementById('sql-modal-close').addEventListener('click', function() {
+                modalOverlay.classList.remove('active');
+            });
+            
+            // Reset demo
+            document.getElementById('reset-demo').addEventListener('click', function() {
+                modalOverlay.classList.remove('active');
+                // Add any other reset functionality here
+            });
+        });
+    </script>
 </body>
 </html>

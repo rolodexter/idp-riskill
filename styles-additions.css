@@ -1,0 +1,361 @@
+/* AI Assistant Widget */
+.ai-assistant {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Fix for dashboard layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure dashboard layout maintains proper structure */
+.dashboard-layout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    flex-wrap: nowrap;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: rgba(0, 0, 0, 0.2);
+    align-items: flex-start;
+}
+
+/* Ensure proper zone alignment */
+.left-sidebar, .main-content, .right-zone {
+    position: relative;
+    z-index: 2;
+    flex: 0 0 auto;
+}
+
+.left-sidebar {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.main-content {
+    flex: 3;
+    min-width: 400px;
+}
+
+.right-zone {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.ai-assistant-profile {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-xs);
+}
+
+.assistant-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-accent-blue-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-sm);
+}
+
+.assistant-avatar i {
+    font-size: 20px;
+    color: var(--color-accent-blue);
+}
+
+.assistant-info {
+    flex: 1;
+}
+
+.assistant-name {
+    font-weight: var(--font-medium);
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.assistant-status {
+    font-size: var(--text-xs);
+    display: flex;
+    align-items: center;
+}
+
+.assistant-status.online::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #2ed893;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+/* SQL Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.sql-modal {
+    width: 90%;
+    max-width: 1000px;
+    max-height: 80vh;
+    background: var(--glass-background);
+    backdrop-filter: blur(10px);
+    border: var(--border-medium);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--glass-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .sql-modal {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.sql-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    border-bottom: var(--border-subtle);
+}
+
+.sql-modal-title {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-primary);
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+}
+
+.sql-modal-title i {
+    margin-right: var(--spacing-sm);
+    color: var(--color-accent-blue);
+}
+
+.sql-modal-close {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.sql-modal-close:hover {
+    color: var(--color-text-primary);
+}
+
+.sql-modal-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+}
+
+.sql-sidebar {
+    width: 200px;
+    border-right: var(--border-subtle);
+    padding: var(--spacing-md);
+}
+
+.sql-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sql-modal-body {
+    display: flex;
+    height: 100%;
+}
+
+.sql-table-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sql-table-item {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.sql-table-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sql-table-item.active {
+    background: var(--color-accent-blue-subtle);
+    color: var(--color-accent-blue);
+}
+
+.sql-table-item i {
+    margin-right: var(--spacing-xs);
+    font-size: 1rem;
+}
+
+.sql-table-content {
+    padding: var(--spacing-md);
+    flex: 1;
+    overflow: auto;
+}
+
+.sql-table-header {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: var(--border-subtle);
+}
+
+.sql-table-header h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.sql-table-description {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-top: var(--spacing-xs);
+}
+
+.sql-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--spacing-md);
+}
+
+.sql-table th,
+.sql-table td {
+    padding: var(--spacing-sm);
+    text-align: left;
+    border-bottom: var(--border-subtle);
+}
+
+.sql-table th {
+    font-weight: var(--font-medium);
+    color: var(--color-text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sql-table td {
+    color: var(--color-text-secondary);
+}
+
+.sql-table tr:hover td {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sql-footer {
+    padding: var(--spacing-md);
+    border-top: var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sql-status {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.sql-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.sql-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    border: none;
+    background: var(--glass-background);
+    color: var(--color-text-primary);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: var(--border-subtle);
+}
+
+.sql-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sql-button.primary {
+    background: var(--color-accent-blue);
+    color: white;
+    border: none;
+}
+
+.sql-button.primary:hover {
+    background: var(--color-accent-blue);
+    opacity: 0.9;
+}
+
+/* Reset Demo Button */
+.reset-demo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--glass-background);
+    border: var(--border-subtle);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-primary);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    pointer-events: auto;
+}
+
+.reset-demo:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.reset-demo i {
+    font-size: 1rem;
+}
