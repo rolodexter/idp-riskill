@@ -341,88 +341,253 @@ function simplifyContent(widget, densityMode) {
 
 // Enhanced Widget Functionality for Financial Anomalies and Supply Chain Management
 document.addEventListener('DOMContentLoaded', function() {
-    // Financial Anomalies Widget - Filter Button Toggle
-    const filterBtn = document.querySelector('.financial-anomalies .filter-btn');
-    const filterPanel = document.querySelector('.financial-anomalies .filter-panel');
+    // Cache DOM elements for better performance
+    const domCache = {
+        // Financial Anomalies elements
+        filterBtn: document.querySelector('.financial-anomalies .filter-btn'),
+        filterPanel: document.querySelector('.financial-anomalies .filter-panel'),
+        anomalyItems: document.querySelectorAll('.anomaly-item'),
+        expandBtn: document.querySelector('.financial-anomalies .expand-btn'),
+        financialAnomaliesWidget: document.querySelector('.financial-anomalies'),
+        anomalyContainer: document.querySelector('.financial-anomalies .anomaly-list'),
+        
+        // Supply Chain elements
+        supplyChainWidget: document.querySelector('.kpi-widget.supply-chain'),
+        supplyChainDropdown: document.querySelector('.kpi-dropdown'),
+        supplierItems: document.querySelectorAll('.supplier-item'),
+        
+        // Empty state elements
+        emptyStateContainers: document.querySelectorAll('.placeholder-content')
+    };
     
-    if (filterBtn && filterPanel) {
-        filterBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            filterPanel.style.display = filterPanel.style.display === 'none' ? 'block' : 'none';
-        });
+    // Error handling utility
+    const errorHandler = {
+        logError: function(component, error) {
+            console.error(`Error in ${component}:`, error);
+            // Could be extended to show user-facing error messages
+        },
+        showUIError: function(container, message) {
+            if (!container) return;
+            
+            const errorElement = document.createElement('div');
+            errorElement.className = 'ui-error-message';
+            errorElement.innerHTML = `
+                <i class="ph-fill ph-warning"></i>
+                <span>${message}</span>
+            `;
+            container.appendChild(errorElement);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (errorElement.parentNode) {
+                    errorElement.parentNode.removeChild(errorElement);
+                }
+            }, 5000);
+        }
+    };
+    
+    // Empty state handler
+    const emptyStateHandler = {
+        checkAndApply: function() {
+            // Check all containers that might have empty states
+            domCache.emptyStateContainers.forEach(container => {
+                if (!container.children.length || 
+                    (container.children.length === 1 && container.children[0].classList.contains('empty-state-message'))) {
+                    this.showEmptyState(container);
+                }
+            });
+            
+            // Check anomaly list specifically
+            if (domCache.anomalyContainer && 
+                (!domCache.anomalyContainer.children.length || 
+                 (domCache.anomalyContainer.querySelectorAll('.anomaly-item:not([style*="display: none"])')).length === 0)) {
+                this.showEmptyState(domCache.anomalyContainer, 'No anomalies match the current filters');
+            }
+        },
+        
+        showEmptyState: function(container, customMessage) {
+            // Don't add if already has empty state
+            if (container.querySelector('.empty-state-message')) return;
+            
+            const message = customMessage || 'No data available';
+            const emptyStateElement = document.createElement('div');
+            emptyStateElement.className = 'empty-state-message';
+            emptyStateElement.innerHTML = `
+                <i class="ph-fill ph-info"></i>
+                <p>${message}</p>
+            `;
+            container.appendChild(emptyStateElement);
+        },
+        
+        removeEmptyState: function(container) {
+            const emptyState = container.querySelector('.empty-state-message');
+            if (emptyState) {
+                emptyState.parentNode.removeChild(emptyState);
+            }
+        }
+    };
+    
+    // Initialize empty states
+    try {
+        emptyStateHandler.checkAndApply();
+    } catch (error) {
+        errorHandler.logError('Empty State Initialization', error);
+    }
+    
+    // Financial Anomalies Widget - Filter Button Toggle
+    if (domCache.filterBtn && domCache.filterPanel) {
+        // Store event handler references for cleanup
+        const filterBtnClickHandler = function(e) {
+            try {
+                e.stopPropagation();
+                domCache.filterPanel.style.display = domCache.filterPanel.style.display === 'none' ? 'block' : 'none';
+            } catch (error) {
+                errorHandler.logError('Filter Button Click', error);
+            }
+        };
+        
+        domCache.filterBtn.addEventListener('click', filterBtnClickHandler);
         
         // Close filter panel when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!filterPanel.contains(e.target) && e.target !== filterBtn) {
-                filterPanel.style.display = 'none';
+        const documentClickHandler = function(e) {
+            try {
+                if (!domCache.filterPanel.contains(e.target) && e.target !== domCache.filterBtn) {
+                    domCache.filterPanel.style.display = 'none';
+                }
+            } catch (error) {
+                errorHandler.logError('Document Click Handler', error);
             }
-        });
+        };
+        
+        document.addEventListener('click', documentClickHandler);
         
         // Filter checkboxes functionality
-        const filterCheckboxes = filterPanel.querySelectorAll('input[type="checkbox"]');
+        const filterCheckboxes = domCache.filterPanel.querySelectorAll('input[type="checkbox"]');
         filterCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const filterType = this.parentElement.textContent.trim().toLowerCase();
-                const anomalyItems = document.querySelectorAll('.anomaly-item');
-                
-                anomalyItems.forEach(item => {
-                    const itemText = item.textContent.toLowerCase();
-                    if (itemText.includes(filterType)) {
-                        item.style.display = this.checked ? 'flex' : 'none';
+            const checkboxChangeHandler = function() {
+                try {
+                    const filterType = this.parentElement.textContent.trim().toLowerCase();
+                    let visibleItemCount = 0;
+                    
+                    domCache.anomalyItems.forEach(item => {
+                        const itemText = item.textContent.toLowerCase();
+                        if (itemText.includes(filterType)) {
+                            item.style.display = this.checked ? 'flex' : 'none';
+                        }
+                        
+                        // Count visible items for empty state handling
+                        if (item.style.display !== 'none') {
+                            visibleItemCount++;
+                        }
+                    });
+                    
+                    // Handle empty state if all items are filtered out
+                    if (visibleItemCount === 0 && domCache.anomalyContainer) {
+                        emptyStateHandler.showEmptyState(domCache.anomalyContainer, 'No anomalies match the current filters');
+                    } else if (domCache.anomalyContainer) {
+                        emptyStateHandler.removeEmptyState(domCache.anomalyContainer);
                     }
-                });
-            });
+                } catch (error) {
+                    errorHandler.logError('Filter Checkbox Change', error);
+                }
+            };
+            
+            checkbox.addEventListener('change', checkboxChangeHandler);
+            
+            // Store handler reference for potential cleanup
+            checkbox._changeHandler = checkboxChangeHandler;
         });
     }
     
     // Supply Chain Management Widget - Dropdown Toggle
-    const supplyChainWidget = document.querySelector('.kpi-widget.supply-chain');
-    const supplyChainDropdown = document.querySelector('.kpi-dropdown');
-    
-    if (supplyChainWidget && supplyChainDropdown) {
-        supplyChainWidget.addEventListener('click', function(e) {
-            e.stopPropagation();
-            supplyChainDropdown.style.display = supplyChainDropdown.style.display === 'none' ? 'block' : 'none';
-        });
+    if (domCache.supplyChainWidget && domCache.supplyChainDropdown) {
+        const supplyChainClickHandler = function(e) {
+            try {
+                e.stopPropagation();
+                domCache.supplyChainDropdown.style.display = domCache.supplyChainDropdown.style.display === 'none' ? 'block' : 'none';
+            } catch (error) {
+                errorHandler.logError('Supply Chain Widget Click', error);
+            }
+        };
+        
+        domCache.supplyChainWidget.addEventListener('click', supplyChainClickHandler);
         
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!supplyChainDropdown.contains(e.target) && !supplyChainWidget.contains(e.target)) {
-                supplyChainDropdown.style.display = 'none';
+        const documentClickHandler = function(e) {
+            try {
+                if (!domCache.supplyChainDropdown.contains(e.target) && !domCache.supplyChainWidget.contains(e.target)) {
+                    domCache.supplyChainDropdown.style.display = 'none';
+                }
+            } catch (error) {
+                errorHandler.logError('Document Click Handler for Supply Chain', error);
             }
-        });
+        };
         
-        // Add hover effect to supplier items
-        const supplierItems = document.querySelectorAll('.supplier-item');
-        supplierItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(5px)';
-            });
+        document.addEventListener('click', documentClickHandler);
+        
+        // Add hover effect to supplier items with proper memory management
+        domCache.supplierItems.forEach(item => {
+            const mouseEnterHandler = function() {
+                try {
+                    this.style.transform = 'translateX(5px)';
+                } catch (error) {
+                    errorHandler.logError('Supplier Item Mouse Enter', error);
+                }
+            };
             
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-            });
+            const mouseLeaveHandler = function() {
+                try {
+                    this.style.transform = 'translateX(0)';
+                } catch (error) {
+                    errorHandler.logError('Supplier Item Mouse Leave', error);
+                }
+            };
+            
+            item.addEventListener('mouseenter', mouseEnterHandler);
+            item.addEventListener('mouseleave', mouseLeaveHandler);
+            
+            // Store handler references for potential cleanup
+            item._mouseEnterHandler = mouseEnterHandler;
+            item._mouseLeaveHandler = mouseLeaveHandler;
         });
     }
     
     // Expand button functionality for Financial Anomalies widget
-    const expandBtn = document.querySelector('.financial-anomalies .expand-btn');
-    const financialAnomaliesWidget = document.querySelector('.financial-anomalies');
-    
-    if (expandBtn && financialAnomaliesWidget) {
-        expandBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            financialAnomaliesWidget.classList.toggle('expanded');
-            
-            // Update icon based on expanded state
-            const icon = this.querySelector('i');
-            if (financialAnomaliesWidget.classList.contains('expanded')) {
-                icon.classList.remove('ph-arrows-out');
-                icon.classList.add('ph-arrows-in');
-            } else {
-                icon.classList.remove('ph-arrows-in');
-                icon.classList.add('ph-arrows-out');
+    if (domCache.expandBtn && domCache.financialAnomaliesWidget) {
+        const expandBtnClickHandler = function(e) {
+            try {
+                e.stopPropagation();
+                domCache.financialAnomaliesWidget.classList.toggle('expanded');
+                
+                // Update icon based on expanded state
+                const icon = this.querySelector('i');
+                if (domCache.financialAnomaliesWidget.classList.contains('expanded')) {
+                    icon.classList.remove('ph-arrows-out');
+                    icon.classList.add('ph-arrows-in');
+                } else {
+                    icon.classList.remove('ph-arrows-in');
+                    icon.classList.add('ph-arrows-out');
+                }
+            } catch (error) {
+                errorHandler.logError('Expand Button Click', error);
             }
-        });
+        };
+        
+        domCache.expandBtn.addEventListener('click', expandBtnClickHandler);
     }
+    
+    // Cleanup function to prevent memory leaks
+    // This would be called when components are destroyed or page is unloaded
+    window._cleanupEventListeners = function() {
+        // Example cleanup code - would need to be called at appropriate lifecycle points
+        // document.removeEventListener('click', documentClickHandler);
+        // And other event listener removals
+    };
+    
+    // Add unload handler to clean up event listeners
+    window.addEventListener('beforeunload', function() {
+        if (window._cleanupEventListeners) {
+            window._cleanupEventListeners();
+        }
+    });
 });

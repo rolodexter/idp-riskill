@@ -718,12 +718,13 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--border-radius-md);
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     display: flex;
     align-items: center;
     box-shadow: var(--glass-shadow), var(--glass-inner-shadow);
     transition: all var(--animation-medium) ease;
-    min-height: 60px;
+    min-height: 50px;
+    max-height: 120px;
     position: relative;
     gap: var(--spacing-sm);
     overflow: hidden; /* Failsafe to prevent content from spilling out */
@@ -810,7 +811,7 @@ body {
 }
 
 .kpi-value {
-    font-size: var(--text-lg);
+    font-size: var(--text-md);
     font-weight: var(--font-medium);
     color: rgba(255, 255, 255, 0.92);
     letter-spacing: -0.01em;

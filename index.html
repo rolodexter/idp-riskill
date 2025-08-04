@@ -55,70 +55,116 @@
         <!-- KPI Widget Row -->
         <section class="kpi-row">
             <!-- Deal Intelligence KPI Widget -->
-            <div class="kpi-widget crisis">
+            <div class="kpi-widget crisis enterprise-kpi">
                 <div class="indicator pulsing-red"></div>
                 <div class="kpi-content">
-                    <div class="kpi-value">71.3T</div>
+                    <div class="kpi-header">
+                        <div class="kpi-value">71.3T</div>
+                        <div class="benchmark top-quartile" title="Top industry quartile">Q1</div>
+                    </div>
                     <div class="kpi-label">Deal Value</div>
                     <div class="kpi-trend">
                         <span class="trend-arrow">↑</span>
                         <span class="trend-value">+516B</span>
                         <span class="trend-label">pesos</span>
                     </div>
+                    <div class="micro-trend sparkline" data-values="65.2,67.8,68.9,69.5,70.1,70.8,71.3" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#FF5252"></div>
+                    <div class="data-context">
+                        <span class="forecast-indicator positive" title="AI-driven forecast">↗ 3.2%</span>
+                        <span class="data-freshness" title="Last updated">Live</span>
+                    </div>
                 </div>
                 <div class="urgency-signal">
                     <i class="ph-fill ph-chart-line-up"></i>
                 </div>
+                <div class="kpi-actions">
+                    <button class="action-button" title="Expand details"><i class="ph-bold ph-plus"></i></button>
+                </div>
             </div>
 
             <!-- Data Quality KPI Widget -->
-            <div class="kpi-widget data-quality">
+            <div class="kpi-widget data-quality enterprise-kpi">
                 <div class="indicator blue-pulse"></div>
                 <div class="kpi-content">
-                    <div class="kpi-value">78.4%</div>
-                    <div class="kpi-label">Data Quality</div>
-                    <div class="kpi-trend">
-                        <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+12.7%</span>
-                        <span class="trend-label">improvement</span>
+                    <div class="kpi-header">
+                        <div class="kpi-value">78.4%</div>
+                        <div class="benchmark second-quartile" title="Second industry quartile">Q2</div>
                     </div>
+                    <div class="kpi-label">Data Quality Score</div>
+                    <!-- Donut chart will be inserted here by data-visualizations.js -->
+                    <div class="chart-container placeholder-content"></div>
+                    <div class="micro-trend sparkline" data-values="62.1,65.4,68.9,71.2,73.8,76.5,78.4" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#2B7FFF"></div>
+                    <div class="data-context">
+                        <span class="forecast-indicator positive" title="AI-driven forecast">↗ 5.8%</span>
+                        <span class="data-freshness" title="Last updated">2h ago</span>
+                    </div>
+                </div>
+                <div class="kpi-trend">
+                    <span class="trend-arrow">↑</span>
+                    <span class="trend-value">+12.7%</span>
+                    <span class="trend-label">improvement</span>
                 </div>
                 <div class="urgency-signal">
                     <i class="ph-fill ph-check-circle"></i>
                 </div>
+                <div class="kpi-actions">
+                    <button class="action-button" title="Expand details"><i class="ph-bold ph-plus"></i></button>
+                </div>
             </div>
 
             <!-- Customers KPI Widget -->
-            <div class="kpi-widget opportunity">
+            <div class="kpi-widget opportunity enterprise-kpi">
                 <div class="indicator green-glow"></div>
                 <div class="kpi-content">
-                    <div class="kpi-value">881→47</div>
+                    <div class="kpi-header">
+                        <div class="kpi-value">881→47</div>
+                        <div class="benchmark top-quartile" title="Top industry quartile">Q1</div>
+                    </div>
                     <div class="kpi-label">Gov Contracts</div>
                     <div class="kpi-trend">
                         <span class="trend-arrow">↑</span>
                         <span class="trend-value">+600%</span>
                         <span class="trend-label">growth</span>
                     </div>
+                    <div class="micro-trend sparkline" data-values="12,18,24,31,38,42,47" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#4CAF50"></div>
+                    <div class="data-context">
+                        <span class="forecast-indicator positive" title="AI-driven forecast">↗ 12.4%</span>
+                        <span class="data-freshness" title="Last updated">4h ago</span>
+                    </div>
                 </div>
                 <div class="urgency-signal">
                     <i class="ph-fill ph-users"></i>
                 </div>
+                <div class="kpi-actions">
+                    <button class="action-button" title="Expand details"><i class="ph-bold ph-plus"></i></button>
+                </div>
             </div>
 
             <!-- Supply Chain Management KPI Widget -->
-            <div class="kpi-widget supply-chain warning">
+            <div class="kpi-widget supply-chain warning enterprise-kpi">
                 <div class="indicator amber-fill"></div>
                 <div class="kpi-content">
-                    <div class="kpi-value">6/43</div>
+                    <div class="kpi-header">
+                        <div class="kpi-value">6/43</div>
+                        <div class="benchmark third-quartile" title="Third industry quartile">Q3</div>
+                    </div>
                     <div class="kpi-label">Critical Suppliers</div>
                     <div class="kpi-trend">
                         <span class="trend-arrow">!</span>
                         <span class="trend-value">87%</span>
                         <span class="trend-label">dependency</span>
                     </div>
+                    <div class="micro-trend sparkline" data-values="8,7,7,6,6,6,6" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#FFC107"></div>
+                    <div class="data-context">
+                        <span class="forecast-indicator negative" title="AI-driven forecast">↘ -2.1%</span>
+                        <span class="data-freshness" title="Last updated">1d ago</span>
+                    </div>
                 </div>
                 <div class="urgency-signal">
                     <i class="ph-fill ph-factory"></i>
+                </div>
+                <div class="kpi-actions">
+                    <button class="action-button" title="Expand details"><i class="ph-bold ph-plus"></i></button>
                 </div>
                 <div class="kpi-dropdown" style="display: none;">
                     <div class="supply-chain-details">
@@ -302,36 +348,33 @@
                     <div class="placeholder-header">
                         <span>Financial Anomalies</span>
                         <div class="widget-controls">
-                            <button class="filter-btn" title="Filter Anomalies"><i class="ph ph-funnel"></i></button>
-                            <button class="expand-btn" title="Expand View"><i class="ph ph-arrows-out"></i></button>
+                            <button class="filter-btn" aria-label="Filter anomalies">
+                                <i class="ph ph-funnel"></i>
+                            </button>
+                            <button class="expand-btn" aria-label="Expand widget">
+                                <i class="ph ph-arrows-out"></i>
+                            </button>
                         </div>
+                        <!-- Sparkline trend will be inserted here by data-visualizations.js -->
                     </div>
-                    
-                    <!-- Filter Panel (hidden by default) -->
                     <div class="filter-panel" style="display: none;">
-                        <div class="filter-options">
-                            <label><input type="checkbox" checked> Missing Dates</label>
-                            <label><input type="checkbox" checked> Unlinked Transactions</label>
-                            <label><input type="checkbox" checked> Spending Patterns</label>
-                            <label><input type="checkbox" checked> Resource Allocation</label>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filter-missing" checked>
+                            <label for="filter-missing">Missing Dates</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filter-unlinked" checked>
+                            <label for="filter-unlinked">Unlinked Transactions</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="filter-duplicate" checked>
+                            <label for="filter-duplicate">Duplicate Entries</label>
                         </div>
                     </div>
                     
-                    <!-- Mini Trend Chart -->
-                    <div class="mini-trend-chart">
-                        <div class="chart-title">Anomaly Trend (30 Days)</div>
-                        <div class="chart-container">
-                            <div class="chart-bar" style="height: 30%;"></div>
-                            <div class="chart-bar" style="height: 45%;"></div>
-                            <div class="chart-bar" style="height: 25%;"></div>
-                            <div class="chart-bar" style="height: 60%;"></div>
-                            <div class="chart-bar" style="height: 40%;"></div>
-                            <div class="chart-bar highlighted" style="height: 75%;"></div>
-                            <div class="chart-bar" style="height: 35%;"></div>
-                        </div>
-                    </div>
+                    <!-- Progress bars for anomaly categories will be inserted here by data-visualizations.js -->
                     
-                    <div class="placeholder-content">
+                    <div class="anomaly-list placeholder-content">
                         <div class="anomaly-item critical">
                             <i class="ph ph-calendar-x"></i>
                             <div class="anomaly-details">
@@ -441,6 +484,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Include data visualizations script -->
+    <script src="data-visualizations.js"></script>
 
     <!-- SQL Modal -->
     <div class="modal-overlay" id="sql-modal-overlay">
