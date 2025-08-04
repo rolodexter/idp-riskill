@@ -5,6 +5,40 @@
  * in the IDP-Riskill dashboard.
  */
 
+/* Fixed height for Anomalies widget to prevent layout shifts */
+.placeholder-widget.anomalies {
+  height: 340px; /* Fixed height to prevent layout shifts during animations */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.placeholder-widget.anomalies::-webkit-scrollbar {
+  display: none;
+}
+
+/* Collapse empty progress bars div to remove extra space */
+.anomaly-progress-bars:empty {
+  display: none;
+  margin: 0;
+  padding: 0;
+  height: 0;
+}
+
+.anomaly-list {
+  max-height: 220px; /* Ensure anomaly list doesn't grow beyond container */
+  overflow-y: auto; /* Allow scrolling within the list if needed */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  margin-top: 0; /* No additional margin needed when progress bars are collapsed */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.anomaly-list::-webkit-scrollbar {
+  display: none;
+}
+
 /* Card 3D Perspective */
 .card-3d-container {
   perspective: 1000px;

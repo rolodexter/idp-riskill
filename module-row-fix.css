@@ -1,0 +1,87 @@
+/* 
+ * Module Row Responsive Layout Fix
+ * Created on August 4, 2025
+ * Updated on August 4, 2025
+ * 
+ * This CSS file fixes the spacing issues in the module row at the bottom of the dashboard.
+ * It ensures widgets adapt properly to the browser width and eliminates awkward spaces.
+ */
+
+/* Reset app container at the bottom */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Force the module row to fill the width */
+.module-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Style each module item to distribute evenly */
+.module-item {
+  margin: 0;
+  padding: 16px 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Fill the grid cell completely */
+}
+
+/* Enhance glassmorphism effect with increased transparency */
+.module-item {
+  background-color: rgba(16, 16, 24, 0.4); /* Increased transparency from 0.65 to 0.4 */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Remove right border from last item */
+.module-item:last-child {
+  border-right: none;
+}
+
+/* Add subtle hover effect with increased transparency */
+.module-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  background-color: rgba(18, 18, 26, 0.45); /* Increased transparency from 0.7 to 0.45 */
+  z-index: 1;
+}
+
+/* Module icon styling */
+.module-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  opacity: 0.85;
+  color: var(--color-text-primary);
+}
+
+/* Module name styling */
+.module-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+/* Module description styling */
+.module-description {
+  font-size: 0.65rem;
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
