@@ -1,0 +1,119 @@
+/**
+ * Anomalies Widget Styles
+ * 
+ * Clean, minimalist styling for the Anomalies widget in the IDP-Riskill dashboard.
+ * Follows the ultra-minimalist design principles with subtle color usage.
+ */
+
+/* Anomaly items styling */
+.anomaly-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.anomaly-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.anomaly-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Anomaly indicator dot */
+.anomaly-indicator {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Indicator colors */
+.anomaly-indicator.warning {
+  background-color: #FFC107;
+}
+
+.anomaly-indicator.error {
+  background-color: #F44336;
+}
+
+.anomaly-indicator.info {
+  background-color: #2196F3;
+}
+
+.anomaly-indicator.success {
+  background-color: #4CAF50;
+}
+
+/* Anomaly text content */
+.anomaly-item span {
+  margin-left: 16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.anomaly-item small {
+  margin-left: 16px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .anomaly-item {
+    padding: 8px 10px;
+  }
+  
+  .anomaly-item span {
+    font-size: 13px;
+  }
+  
+  .anomaly-item small {
+    font-size: 11px;
+  }
+}
+
+
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding: 20px;
+}
+
+.empty-state-icon {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.empty-state-text {
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .anomaly-viz {
+    display: none;
+  }
+  
+  .anomaly-item {
+    padding: 10px;
+  }
+}
