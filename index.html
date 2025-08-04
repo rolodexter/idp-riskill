@@ -7,10 +7,28 @@
     <link rel="stylesheet" href="styles-additions.css">
     <link rel="stylesheet" href="styles-refined.css">
     <link rel="stylesheet" href="styles-refined-layout.css">
+    <link rel="stylesheet" href="enhanced-anomalies.css">
     <title>Riskill Dashboard</title>
     <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+    <!-- Enhanced Anomalies Widget Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.9/dist/plot.umd.min.js"></script>
+    <script>
+        window.Plot = Plot;
+    </script>
+    <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.js"></script>
+    <script>
+        window.tippy = tippy;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script>
+        window.Sortable = Sortable;
+    </script>
+    <script src="https://unpkg.com/@floating-ui/dom@1.5.1/dist/floating-ui.dom.umd.min.js"></script>
     <!-- Advanced data visualization styles -->
     <!-- Enhanced Typography with Professional Font Pairing -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -416,9 +434,10 @@
             <!-- Right Zone -->
             <aside class="right-zone">
                 <!-- Anomalies Widget -->
-                <div class="placeholder-widget financial-anomalies">
+                <div class="placeholder-widget anomalies">
                     <div class="placeholder-header">
-                        <span>Financial Anomalies</span>
+                        <span>Anomalies</span>
+                        <div class="anomaly-trend"></div>
                         <div class="widget-controls">
                             <button class="filter-btn" aria-label="Filter anomalies">
                                 <i class="ph ph-funnel"></i>
@@ -427,54 +446,68 @@
                                 <i class="ph ph-arrows-out"></i>
                             </button>
                         </div>
-                        <!-- Sparkline trend will be inserted here by data-visualizations.js -->
                     </div>
-                    <div class="filter-panel" style="display: none;">
-                        <div class="filter-option">
-                            <input type="checkbox" id="filter-missing" checked>
-                            <label for="filter-missing">Missing Dates</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="filter-unlinked" checked>
-                            <label for="filter-unlinked">Unlinked Transactions</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="filter-duplicate" checked>
-                            <label for="filter-duplicate">Duplicate Entries</label>
-                        </div>
+                    
+                    <!-- Enhanced filter menu -->
+                    <div class="filter-menu" style="display: none;">
+                        <div class="filter-option" data-type="all">All Anomalies</div>
+                        <div class="filter-option" data-type="transaction">Transaction</div>
+                        <div class="filter-option" data-type="vendor">Vendor</div>
+                        <div class="filter-option" data-type="customer">Customer</div>
+                        <div class="filter-option" data-type="product">Product</div>
+                        <div class="filter-option" data-type="cross">Cross-Domain</div>
                     </div>
                     
                     <!-- Progress bars for anomaly categories will be inserted here by data-visualizations.js -->
+                    <div class="anomaly-progress-bars"></div>
                     
                     <div class="anomaly-list placeholder-content">
-                        <div class="anomaly-item critical">
+                        <div class="anomaly-item" data-anomaly-type="transaction" data-anomaly-id="a001">
+                            <div class="anomaly-type-indicator" data-type="transaction"></div>
                             <i class="ph ph-calendar-x"></i>
                             <div class="anomaly-details">
                                 <span>Missing transaction dates (7)</span>
                                 <small>Aug 1-3, 2025 • High Impact</small>
                             </div>
                         </div>
-                        <div class="anomaly-item warning">
-                            <i class="ph ph-link-break"></i>
+                        <div class="anomaly-item" data-anomaly-type="vendor" data-anomaly-id="a002">
+                            <div class="anomaly-type-indicator" data-type="vendor"></div>
+                            <i class="ph ph-buildings"></i>
                             <div class="anomaly-details">
-                                <span>Unlinked transactions</span>
-                                <small>3 invoices without PO • $47,320</small>
+                                <span>New international supplier</span>
+                                <small>No prior relationship • $142,800</small>
                             </div>
                         </div>
-                        <div class="anomaly-item">
-                            <i class="ph ph-chart-line-up"></i>
+                        <div class="anomaly-item" data-anomaly-type="customer" data-anomaly-id="a003">
+                            <div class="anomaly-type-indicator" data-type="customer"></div>
+                            <i class="ph ph-users"></i>
                             <div class="anomaly-details">
-                                <span>Unusual spending pattern</span>
-                                <small>IT Services +43% vs. forecast</small>
+                                <span>Customer segment shift</span>
+                                <small>Gov sector +28% vs. forecast</small>
                             </div>
                         </div>
-                        <div class="anomaly-item">
-                            <i class="ph ph-scales"></i>
+                        <div class="anomaly-item" data-anomaly-type="product" data-anomaly-id="a004">
+                            <div class="anomaly-type-indicator" data-type="product"></div>
+                            <i class="ph ph-package"></i>
                             <div class="anomaly-details">
-                                <span>Resource allocation imbalance</span>
-                                <small>Q3 budget variance detected</small>
+                                <span>Product pricing irregularity</span>
+                                <small>U001 pricing variance detected</small>
                             </div>
                         </div>
+                        <div class="anomaly-item" data-anomaly-type="cross" data-anomaly-id="a005">
+                            <div class="anomaly-type-indicator" data-type="cross"></div>
+                            <i class="ph ph-arrows-out"></i>
+                            <div class="anomaly-details">
+                                <span>Cross-domain mismatch</span>
+                                <small>Vendor-product correlation gap</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Navigation -->
+                    <div class="carousel-nav">
+                        <div class="carousel-dot active"></div>
+                        <div class="carousel-dot"></div>
                     </div>
                 </div>
                 
@@ -755,5 +788,7 @@
             });
         });
     </script>
+    <!-- Enhanced Anomalies Widget Script - Loaded last to ensure all libraries are available -->
+    <script src="enhanced-anomalies.js"></script>
 </body>
 </html>

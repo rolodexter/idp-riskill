@@ -1,0 +1,365 @@
+/**
+ * Enhanced Anomalies Widget Styles
+ * 
+ * This file contains advanced styling for the enhanced Anomalies widget
+ * in the IDP-Riskill dashboard.
+ */
+
+/* Card 3D Perspective */
+.card-3d-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: opacity 0.3s ease;
+}
+
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+/* Anomaly Details Expanded */
+.anomaly-details-expanded {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-header {
+  font-weight: 500;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.detail-type,
+.detail-impact {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.detail-chart {
+  margin: 6px 0;
+  height: 60px;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.action-btn.investigate {
+  color: #2B7FFF;
+}
+
+.action-btn.resolve {
+  color: #4CAF50;
+}
+
+/* Micro Visualizations */
+.micro-viz {
+  margin-left: auto;
+  height: 20px;
+  width: 60px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.anomaly-item:hover .micro-viz {
+  opacity: 1;
+}
+
+.micro-sparkline {
+  overflow: visible;
+}
+
+/* Anomaly Type Indicators */
+.anomaly-type-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.anomaly-type-indicator[data-type="transaction"] {
+  background-color: #2B7FFF;
+}
+
+.anomaly-type-indicator[data-type="vendor"] {
+  background-color: #4CAF50;
+}
+
+.anomaly-type-indicator[data-type="customer"] {
+  background-color: #FF9800;
+}
+
+.anomaly-type-indicator[data-type="product"] {
+  background-color: #9C27B0;
+}
+
+.anomaly-type-indicator[data-type="cross"] {
+  background-color: #009688;
+}
+
+/* Anomaly Trend in Header */
+.anomaly-trend {
+  margin-left: auto;
+  height: 40px;
+  width: 120px;
+}
+
+/* Filter Menu */
+.filter-menu {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: none;
+}
+
+.filter-option {
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.filter-option::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.filter-option[data-type="all"]::before {
+  background: linear-gradient(to right, #2B7FFF, #4CAF50, #FF9800, #9C27B0);
+}
+
+.filter-option[data-type="transaction"]::before {
+  background-color: #2B7FFF;
+}
+
+.filter-option[data-type="vendor"]::before {
+  background-color: #4CAF50;
+}
+
+.filter-option[data-type="customer"]::before {
+  background-color: #FF9800;
+}
+
+.filter-option[data-type="product"]::before {
+  background-color: #9C27B0;
+}
+
+.filter-option[data-type="cross"]::before {
+  background-color: #009688;
+}
+
+/* Carousel Navigation */
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-dot.active {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Resolved Anomaly */
+.anomaly-item.resolved {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.anomaly-type-indicator.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .micro-viz {
+    display: none;
+  }
+  
+  .anomaly-trend {
+    width: 80px;
+  }
+}
+
+/* Tooltip Customizations */
+.tippy-box[data-theme~='idp-minimal'] {
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+}
+
+.tippy-box[data-theme~='idp-minimal'] .tippy-content {
+  padding: 8px 10px;
+}
+
+.anomaly-tooltip {
+  min-width: 180px;
+}
+
+.tooltip-header {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.tooltip-detail {
+  font-size: 11px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.tooltip-impact {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+}
+
+.tooltip-impact::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #F44336;
+  margin-right: 4px;
+}
+
+/* Context Menu */
+.anomaly-context-menu {
+  position: absolute;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  z-index: 1000;
+  display: none;
+}
+
+.menu-item {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.menu-separator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 4px 0;
+}
+
+/* Sortable */
+.anomaly-ghost {
+  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.anomaly-chosen {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.anomaly-drag {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sort-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 30, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
