@@ -731,6 +731,13 @@
                 modalOverlay.classList.remove('active');
             });
             
+            // Close modal when clicking outside modal content
+            modalOverlay.addEventListener('click', function(event) {
+                if (event.target === modalOverlay) {
+                    modalOverlay.classList.remove('active');
+                }
+            });
+            
             // Reset demo
             document.getElementById('reset-demo').addEventListener('click', function() {
                 modalOverlay.classList.remove('active');
