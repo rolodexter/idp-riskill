@@ -1,0 +1,660 @@
+/* Advanced Refined Styles for Dashboard Widgets
+ * Ultra-minimalist design with fine lines and sophisticated data visualization
+ */
+
+/* =========== Advanced Widget Base Styles =========== */
+:root {
+  /* Ultra-refined color palette */
+  --refined-bg-dark: #0a0a10;
+  --refined-bg-light: #0f0f18;
+  --refined-bg-widget: rgba(16, 16, 24, 0.85);
+  --refined-text-primary: rgba(255, 255, 255, 0.92);
+  --refined-text-secondary: rgba(255, 255, 255, 0.62);
+  --refined-text-tertiary: rgba(255, 255, 255, 0.38);
+  
+  /* Status colors - highly refined */
+  --status-neutral: rgba(138, 146, 166, 0.85);
+  --status-success: rgba(38, 198, 138, 0.85);
+  --status-warning: rgba(255, 149, 0, 0.85);
+  --status-danger: rgba(255, 59, 48, 0.85);
+  --status-info: rgba(0, 122, 255, 0.85);
+  
+  /* Chart colors */
+  --chart-blue: rgba(56, 139, 255, 0.85);
+  --chart-orange: rgba(255, 145, 73, 0.85);
+  --chart-gray: rgba(150, 150, 150, 0.25);
+  
+  /* IDP-specific colors */
+  --idp-mega-project: rgba(255, 59, 48, 0.85);
+  --idp-business-unit: rgba(0, 122, 255, 0.85);
+  --idp-customer: rgba(38, 198, 138, 0.85);
+  --idp-supplier: rgba(255, 149, 0, 0.85);
+  --idp-employee: rgba(88, 86, 214, 0.85);
+  --idp-premium-project: rgba(255, 59, 48, 0.85);
+  --idp-pricing-strategy: rgba(52, 199, 89, 0.85);
+  --idp-product-category: rgba(0, 122, 255, 0.85);
+  
+  /* Ultra-fine lines */
+  --line-ultrathin: 0.5px solid rgba(255, 255, 255, 0.04);
+  --line-thin: 0.75px solid rgba(255, 255, 255, 0.06);
+  --line-hairline: 1px solid rgba(255, 255, 255, 0.08);
+  --line-focus: 1px solid rgba(255, 255, 255, 0.12);
+  --line-grid: 0.5px solid rgba(255, 255, 255, 0.03);
+  
+  /* Refined shadows */
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.15);
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+}
+
+/* Advanced KPI Row */
+.kpi-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 0;
+  align-items: stretch;
+}
+
+/* Advanced KPI Widget Base */
+.kpi-widget {
+  background-color: var(--widget-bg);
+  border: var(--line-thin) solid var(--widget-border);
+  border-radius: 6px;
+  padding: 16px;
+  box-shadow: var(--widget-shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-standard);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  height: 180px; /* Fixed height for consistent layout */
+}
+
+.kpi-widget:hover {
+  box-shadow: var(--shadow-elevated);
+  border: var(--line-hairline);
+}
+
+/* Refined status indicators */
+.kpi-widget .indicator {
+  width: 2px;
+  height: 16px;
+  border-radius: 1px;
+  position: absolute;
+  left: 0;
+  top: 16px;
+  opacity: 0.85;
+}
+
+/* Status indicators - subtle glow effect */
+.pulsing-red {
+  background-color: var(--status-danger);
+  box-shadow: 0 0 8px rgba(255, 59, 48, 0.3);
+}
+
+.blue-pulse {
+  background-color: var(--status-info);
+  box-shadow: 0 0 8px rgba(0, 122, 255, 0.3);
+}
+
+.green-glow {
+  background-color: var(--status-success);
+  box-shadow: 0 0 8px rgba(38, 198, 138, 0.3);
+}
+
+/* IDP-specific widget styling */
+.mega-projects .indicator {
+  background-color: var(--idp-mega-project);
+  box-shadow: 0 0 8px rgba(255, 59, 48, 0.3);
+  height: 24px;
+}
+
+.business-units .indicator {
+  background-color: var(--idp-business-unit);
+  box-shadow: 0 0 8px rgba(0, 122, 255, 0.3);
+  height: 24px;
+}
+
+.customer-segments .indicator {
+  background-color: var(--idp-customer);
+  box-shadow: 0 0 8px rgba(38, 198, 138, 0.3);
+  height: 24px;
+}
+
+.supplier-network .indicator {
+  background-color: var(--idp-supplier);
+  box-shadow: 0 0 8px rgba(255, 149, 0, 0.3);
+  height: 24px;
+}
+
+.employee-specialization .indicator {
+  background-color: var(--idp-employee);
+  box-shadow: 0 0 8px rgba(88, 86, 214, 0.3);
+  height: 24px;
+}
+
+.amber-fill {
+  background-color: var(--status-warning);
+  box-shadow: 0 0 8px rgba(255, 149, 0, 0.3);
+}
+
+/* Advanced KPI Content */
+.kpi-content {
+  display: flex;
+  flex-direction: column;
+  padding-left: var(--space-sm);
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent content overflow */
+  position: relative;
+}
+
+.kpi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 24px;
+}
+
+.kpi-value {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--refined-text-primary);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 1.1;
+}
+
+.kpi-label {
+  font-size: 10px;
+  color: var(--refined-text-secondary);
+  margin-bottom: var(--space-sm);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.benchmark {
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: var(--refined-text-tertiary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Refined trend indicators */
+.kpi-trend {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  margin-top: 6px;
+  height: 16px;
+}
+
+.trend-value {
+  font-weight: 500;
+  margin-right: var(--space-xs);
+}
+
+.trend-value.positive {
+  color: var(--status-success);
+}
+
+.trend-value.negative {
+  color: var(--status-danger);
+}
+
+.trend-value.trend-up {
+  color: var(--status-green);
+}
+
+.trend-value.trend-down {
+  color: var(--status-red);
+}
+
+.trend-value.trend-neutral {
+  color: var(--text-tertiary);
+}
+
+.trend-up .trend-arrow::before {
+  content: '↑';
+  font-size: 10px;
+  margin-right: 3px;
+}
+
+.trend-down .trend-arrow::before {
+  content: '↓';
+  font-size: 10px;
+  margin-right: 3px;
+}
+
+.trend-neutral .trend-arrow::before {
+  content: '→';
+  font-size: 10px;
+  margin-right: 3px;
+}
+
+/* Refined sparklines */
+.micro-trend {
+  height: 40px;
+  margin-top: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.sparkline {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.sparkline-line {
+  stroke-width: var(--line-thin);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sparkline-area {
+  opacity: 0.08;
+}
+
+/* Refined data context */
+.data-context {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--refined-text-tertiary);
+  margin-top: 4px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.forecast-indicator {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.forecast-indicator.positive {
+  color: var(--status-success);
+  background-color: rgba(38, 198, 138, 0.1);
+}
+
+.forecast-indicator.negative {
+  color: var(--status-danger);
+  background-color: rgba(255, 59, 48, 0.1);
+}
+
+/* Refined chart containers */
+.chart-container {
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+/* Chart grid lines */
+.chart-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  pointer-events: none;
+}
+
+.chart-grid-line {
+  border-top: var(--line-grid);
+}
+
+/* Time labels */
+.time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: var(--refined-text-tertiary);
+  margin-top: var(--space-xs);
+}
+
+/* Chart legend */
+.chart-legend {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  font-size: 8px;
+  color: var(--refined-text-tertiary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-color {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+}
+
+/* Menu lines for hamburger */
+.menu-line {
+  display: block;
+  width: 16px;
+  height: 1px;
+  background-color: var(--refined-text-secondary);
+  margin: 3px 0;
+}
+
+/* View report button */
+.view-report-btn {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: transparent;
+  border: none;
+  color: var(--refined-text-tertiary);
+  font-size: 9px;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-report-btn:hover {
+  color: var(--refined-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Advanced Tooltip */
+.tooltip {
+  position: absolute;
+  background-color: rgba(20, 22, 25, 0.92);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: all var(--transition-fast);
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: var(--line-thin) solid var(--line-highlight);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateY(2px);
+}
+
+.tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tooltip strong {
+  font-size: 12px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.tooltip span {
+  color: var(--refined-text-secondary);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Chart grid lines */
+.chart-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 0;
+  pointer-events: none;
+}
+
+.chart-grid-line {
+  width: 100%;
+  height: 0.5px;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Time labels */
+.time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: var(--refined-text-tertiary);
+  margin-top: 4px;
+  padding: 0 5px;
+  letter-spacing: 0.03em;
+}
+
+/* Guide line for charts */
+.guide-line {
+  pointer-events: none;
+}
+
+/* Visible point indicator */
+.visible-point {
+  pointer-events: none;
+}
+
+/* View report button */
+.view-report-btn {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: transparent;
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  color: var(--refined-text-secondary);
+  font-size: 9px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0;
+}
+
+.kpi-widget:hover .view-report-btn {
+  opacity: 1;
+}
+
+.view-report-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--refined-text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Action button with plus sign */
+.action-button {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.action-button:before,
+.action-button:after {
+  content: '';
+  position: absolute;
+  background-color: var(--refined-text-secondary);
+}
+
+.action-button:before {
+  width: 10px;
+  height: 0.75px;
+}
+
+.action-button:after {
+  width: 0.75px;
+  height: 10px;
+}
+
+/* View Report Button - IDP specialized */
+.view-report-button {
+  background: none;
+  border: var(--line-ultrathin);
+  border-radius: 4px;
+  color: var(--refined-text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.view-report-button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--refined-text-primary);
+  border: var(--line-hairline);
+  box-shadow: var(--shadow-subtle);
+}
+
+.mega-projects .view-report-button:hover {
+  border-color: var(--idp-mega-project);
+  color: var(--idp-mega-project);
+}
+
+.business-units .view-report-button:hover {
+  border-color: var(--idp-business-unit);
+  color: var(--idp-business-unit);
+}
+
+.customer-segments .view-report-button:hover {
+  border-color: var(--idp-customer);
+  color: var(--idp-customer);
+}
+
+.supplier-network .view-report-button:hover {
+  border-color: var(--idp-supplier);
+  color: var(--idp-supplier);
+}
+
+.employee-specialization .view-report-button:hover {
+  border-color: var(--idp-employee);
+  color: var(--idp-employee);
+}
+
+.premium-projects .view-report-button:hover {
+  border-color: var(--idp-premium-project);
+  color: var(--idp-premium-project);
+}
+
+.pricing-strategy .view-report-button:hover {
+  border-color: var(--idp-pricing-strategy);
+  color: var(--idp-pricing-strategy);
+}
+
+.product-category .view-report-button:hover {
+  border-color: var(--idp-product-category);
+  color: var(--idp-product-category);
+}
+
+.action-button.expanded {
+  transform: rotate(45deg);
+}
+
+/* Menu toggle with lines */
+.menu-toggle {
+  background: transparent;
+  border: none;
+  color: var(--refined-text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+.menu-toggle:hover {
+  color: var(--refined-text-primary);
+}
+
+.menu-toggle span {
+  display: block;
+  width: 14px;
+  height: 0.5px;
+  background-color: currentColor;
+  transition: all 0.25s ease;
+}
+
+.menu-toggle:hover span {
+  width: 16px;
+}
+
+/* Urgency signals */
+.urgency-signal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+}
+
+.urgency-high {
+  background-color: var(--status-danger);
+  box-shadow: 0 0 8px rgba(255, 59, 48, 0.3);
+}
+
+.urgency-medium {
+  background-color: var(--status-warning);
+  box-shadow: 0 0 8px rgba(255, 149, 0, 0.3);
+}
+
+.urgency-low {
+  background-color: var(--status-success);
+  box-shadow: 0 0 8px rgba(38, 198, 138, 0.3);
+}
+
+.kpi-widget:hover .urgency-signal {
+  transform: scale(1.2);
+}
