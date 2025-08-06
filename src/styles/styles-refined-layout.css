@@ -1,0 +1,68 @@
+/* Layout containment for specialized IDP widgets */
+
+/* Ensure all chart containers stay within bounds */
+.kpi-content {
+  overflow: hidden;
+  max-height: 130px;
+}
+
+/* Premium Projects widget */
+.premium-projects .premium-viz {
+  max-height: 80px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.premium-item {
+  margin-bottom: 4px;
+  padding: 2px 0;
+  border-bottom: var(--line-ultrathin);
+}
+
+.premium-item:last-child {
+  border-bottom: none;
+}
+
+/* Pricing Strategy widget */
+.pricing-strategy .pricing-viz {
+  max-height: 80px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.pricing-row {
+  margin-bottom: 4px;
+  padding: 2px 0;
+  border-bottom: var(--line-ultrathin);
+}
+
+.pricing-row:last-child {
+  border-bottom: none;
+}
+
+/* Refined visualization sizing */
+#premium-projects-chart,
+#pricing-strategy-chart {
+  height: auto;
+  max-height: 80px;
+}
+
+/* Ensure all widgets have consistent height */
+.kpi-widget {
+  height: 180px;
+  overflow: hidden;
+}
+
+/* Ensure all visualizations are properly contained */
+.micro-trend {
+  max-height: 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+/* Ensure all text elements don't overflow */
+.kpi-label, .kpi-value, .benchmark, .trend-value, .trend-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

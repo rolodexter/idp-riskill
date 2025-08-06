@@ -1,0 +1,157 @@
+/**
+ * Project Stratification Widget Styles
+ * Ultra-minimalist, elegant UI with very thin lines
+ */
+
+.project-widget {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.9);
+    border-radius: 4px;
+    overflow: hidden;
+    color: #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card container and structure */
+.project-cards-container {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
+
+.project-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.project-card.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 2;
+}
+
+.project-card.prev {
+    opacity: 0;
+    transform: translateX(-100%);
+    z-index: 1;
+}
+
+.project-card.next {
+    opacity: 0;
+    transform: translateX(100%);
+    z-index: 1;
+}
+
+/* Card header */
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.project-type {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.project-code {
+    font-size: 1rem;
+    color: rgba(224, 224, 224, 0.7);
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(224, 224, 224, 0.3);
+    border-radius: 3px;
+}
+
+/* Project value and metrics */
+.project-value {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.project-description {
+    font-size: 0.9rem;
+    color: rgba(224, 224, 224, 0.7);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+/* Navigation indicators */
+.card-indicators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding: 0.75rem;
+}
+
+.card-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(224, 224, 224, 0.3);
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-indicator.active {
+    background-color: rgba(224, 224, 224, 0.9);
+}
+
+/* Sparkline trends */
+.project-trend {
+    margin: 1rem 0;
+}
+
+/* Status indicators for different project types */
+.tera-indicator {
+    width: 3px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #FF5252;
+}
+
+.giga-indicator {
+    width: 3px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #2B7FFF;
+}
+
+.mega-indicator {
+    width: 3px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #4CAF50;
+}
+
+.standard-indicator {
+    width: 3px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #FFC107;
+}
