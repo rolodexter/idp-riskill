@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="styles-refined-layout.css">
     <link rel="stylesheet" href="module-row-fix.css">
     <link rel="stylesheet" href="anomalies-widget.css">
+    <link rel="stylesheet" href="src/components/projects/projects-widget.css">
+    <link rel="stylesheet" href="src/components/widget-tray/widget-tray.css">
     <title>Riskill Dashboard</title>
     <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
@@ -74,238 +76,42 @@
 
         <!-- KPI Widget Row -->
         <section class="kpi-row">
-            <!-- Mega-Project Performance Monitor Widget -->
-            <div class="kpi-widget mega-projects enterprise-kpi">
-                <div class="indicator pulsing-red"></div>
-                <div class="kpi-content">
-                    <div class="kpi-header">
-                        <div class="kpi-value">671B+</div>
-                        <div class="benchmark top-quartile" title="Z001 Business Unit">Z001</div>
-                    </div>
-                    <div class="kpi-label">Mega-Project Avg Value</div>
-                    <div class="kpi-trend">
-                        <span class="trend-value">+14.2%</span>
-                        <span class="trend-label">YoY</span>
-                    </div>
-                    <div class="micro-trend sparkline" data-values="587,612,634,648,655,662,671" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#FF5252"></div>
-                    <div class="data-context">
-                        <span class="forecast-indicator positive" title="AI-driven forecast">4.8%</span>
-                        <span class="data-freshness" title="Last updated">Live</span>
-                    </div>
-                </div>
-                <div class="kpi-actions">
-                    <button class="view-report-button" title="View Mega-Project Report">View Report</button>
-                </div>
+            <!-- Widget 1: Revenue Widget -->
+            <div class="kpi-widget" id="revenue-widget">
+                <div class="widget-title">Revenue</div>
+                <div class="kpi-value">11.3T</div>
+                <div class="kpi-label">Total Revenue (pesos)</div>
+                <div class="kpi-sparkline"></div>
             </div>
 
-            <!-- Business Unit Revenue Comparison Widget -->
-            <div class="kpi-widget business-units enterprise-kpi">
-                <div class="indicator blue-pulse"></div>
-                <div class="kpi-content">
-                    <div class="kpi-header">
-                        <div class="kpi-value">11T+</div>
-                        <div class="benchmark top-quartile" title="P001 Business Unit">P001</div>
-                    </div>
-                    <div class="kpi-label">P001 Revenue (Pesos)</div>
-                    <!-- Donut chart will be inserted here by refined-visualizations.js -->
-                    <div class="chart-container" id="business-unit-chart"></div>
-                    <div class="micro-trend sparkline" data-values="9.8,10.1,10.3,10.5,10.7,10.9,11.0" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#2B7FFF"></div>
-                    <div class="data-context">
-                        <span class="forecast-indicator positive" title="AI-driven forecast">3.2%</span>
-                        <span class="data-freshness" title="Last updated">2h ago</span>
-                    </div>
-                </div>
-                <div class="kpi-trend">
-                    <span class="trend-arrow">↑</span>
-                    <span class="trend-value">+1.2T</span>
-                    <span class="trend-label">pesos</span>
-                </div>
-                <div class="kpi-actions">
-                    <button class="view-report-button" title="View Business Unit Report">View Report</button>
-                </div>
+            <!-- Widget 2: Business Unit Widget -->
+            <div class="kpi-widget" id="business-unit-widget">
+                <div class="widget-title">Business Units</div>
+                <div class="kpi-value">Z001</div>
+                <div class="kpi-label">Top Performing Unit</div>
+                <div class="kpi-sparkline"></div>
             </div>
 
-            <!-- Customer Segment Analysis Widget -->
-            <div class="kpi-widget customer-segments enterprise-kpi">
-                <div class="indicator green-glow"></div>
-                <div class="kpi-content">
-                    <div class="kpi-header">
-                        <div class="kpi-value">881</div>
-                        <div class="benchmark top-quartile" title="Total Customer Count">Total</div>
-                    </div>
-                    <div class="kpi-label">Customer Segments</div>
-                    <div class="kpi-trend">
-                        <span class="trend-value">47%</span>
-                        <span class="trend-label">Gov</span>
-                    </div>
-                    <div class="micro-trend sparkline" data-values="32,35,38,41,43,45,47" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#4CAF50"></div>
-                    <div class="data-context">
-                        <span class="forecast-indicator positive" title="AI-driven forecast">↗ 5.4%</span>
-                        <span class="data-freshness" title="Last updated">4h ago</span>
-                    </div>
-                </div>
-                <div class="kpi-actions">
-                    <button class="view-report-button" title="View Customer Segments Report">View Report</button>
-                </div>
+            <!-- Widget 3: Projects Widget -->
+            <div class="kpi-widget projects-widget enterprise-kpi" id="projects-widget">
+                <div class="widget-title">Projects</div>
+                <!-- Widget content will be generated by ProjectWidget class -->
             </div>
 
-            <!-- International Supplier Network Widget -->
-            <div class="kpi-widget supplier-network enterprise-kpi">
-                <div class="indicator amber-fill"></div>
-                <div class="kpi-content">
-                    <div class="kpi-header">
-                        <div class="kpi-value">43</div>
-                        <div class="benchmark third-quartile" title="International Suppliers">Int'l</div>
-                    </div>
-                    <div class="kpi-label">Supplier Network</div>
-                    <div class="kpi-trend">
-                        <span class="trend-value">5</span>
-                        <span class="trend-label">US suppliers</span>
-                    </div>
-                    <div class="micro-trend sparkline" data-values="38,39,40,41,42,42,43" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#FFC107"></div>
-                    <div class="data-context">
-                        <span class="forecast-indicator positive" title="AI-driven forecast">2.4%</span>
-                        <span class="data-freshness" title="Last updated">4h ago</span>
-                    </div>
-                </div>
-                <div class="kpi-actions">
-                    <button class="view-report-button" title="View Supplier Network Report">View Report</button>
-                </div>
-                <div class="kpi-dropdown" style="display: none;">
-                    <div class="supply-chain-details">
-                        <div class="supply-metrics">
-                            <div class="metric">
-                                <span class="metric-label">US</span>
-                                <span class="metric-value">5</span>
-                            </div>
-                            <div class="metric warning">
-                                <span class="metric-label">Europe</span>
-                                <span class="metric-value">4</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-label">Other</span>
-                                <span class="metric-value">34</span>
-                            </div>
-                        </div>
-                        <div class="supplier-list">
-                            <div class="supplier-item">
-                                <span class="supplier-name">Survitec Group</span>
-                                <span class="supplier-status">US</span>
-                            </div>
-                            <div class="supplier-item">
-                                <span class="supplier-name">Willem Pot Bv</span>
-                                <span class="supplier-status">Netherlands</span>
-                            </div>
-                            <div class="supplier-item">
-                                <span class="supplier-name">Viking Life-Saving</span>
-                                <span class="supplier-status">US</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Widget 4: Customer Widget -->
+            <div class="kpi-widget" id="customer-widget">
+                <div class="widget-title">Customers</div>
+                <div class="kpi-value">881</div>
+                <div class="kpi-label">Active Accounts</div>
+                <div class="kpi-sparkline"></div>
             </div>
 
-            <!-- Employee Specialization Tracker Widget -->
-            <div class="kpi-widget employee-specialization enterprise-kpi">
-                <div class="indicator blue-pulse"></div>
-                <div class="kpi-content">
-                    <div class="kpi-header">
-                        <div class="kpi-value">400B+</div>
-                        <div class="benchmark top-quartile" title="EMORALES Performance">EMORALES</div>
-                    </div>
-                    <div class="kpi-label">Specialist Value (Pesos)</div>
-                    <div class="kpi-trend">
-                        <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+12.4%</span>
-                        <span class="trend-label">efficiency</span>
-                    </div>
-                    <div class="micro-trend sparkline" data-values="352,364,375,382,390,396,400" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#2B7FFF"></div>
-                    <div class="data-context">
-                        <span class="forecast-indicator positive" title="AI-driven forecast">↗ 3.8%</span>
-                        <span class="data-freshness" title="Last updated">30m ago</span>
-                    </div>
-                </div>
-                <div class="kpi-actions">
-                    <button class="view-report-button" title="View Employee Specialization Report">View Report</button>
-                </div>
-            </div>
-
-            <!-- Ultra-Premium International Projects Widget -->
-            <div class="kpi-widget premium-projects enterprise-kpi">
-                <div class="indicator pulsing-red"></div>
-                <div class="kpi-content">
-                    <div class="kpi-header">
-                        <div class="kpi-value">U001</div>
-                        <div class="benchmark top-quartile" title="Ultra-Premium Business Unit">Ultra-Premium</div>
-                    </div>
-                    <div class="kpi-label">International Projects</div>
-                    <div class="kpi-trend">
-                        <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+24.8%</span>
-                        <span class="trend-label">revenue</span>
-                    </div>
-                    <div class="micro-trend sparkline" data-values="780,810,850,920,970,1020,1100" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#FF3B30"></div>
-                    <div class="data-context">
-                        <span class="forecast-indicator positive" title="AI-driven forecast">↗ 8.2%</span>
-                        <span class="data-freshness" title="Last updated">15m ago</span>
-                        <div id="premium-projects-chart"></div>
-                    </div>
-                </div>
-                <div class="kpi-actions">
-                    <button class="view-report-button" title="View Ultra-Premium Projects Report">View Report</button>
-                </div>
-            </div>
-
-            <!-- Pricing Strategy Intelligence Widget -->
-            <div class="kpi-widget pricing-strategy enterprise-kpi">
-                <div class="indicator green-glow"></div>
-                <div class="kpi-content">
-                    <div class="kpi-header">
-                        <div class="kpi-value">+18.5%</div>
-                        <div class="benchmark top-quartile" title="Margin Improvement">Margin</div>
-                    </div>
-                    <div class="kpi-label">Pricing Intelligence</div>
-                    <div class="kpi-trend">
-                        <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+5.2%</span>
-                        <span class="trend-label">optimization</span>
-                    </div>
-                    <div class="micro-trend sparkline" data-values="12.4,13.8,14.5,15.7,16.9,17.8,18.5" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#34C759"></div>
-                    <div class="data-context">
-                        <span class="forecast-indicator positive" title="AI-driven forecast">↗ 2.3%</span>
-                        <span class="data-freshness" title="Last updated">45m ago</span>
-                        <div id="pricing-strategy-chart"></div>
-                    </div>
-                </div>
-                <div class="kpi-actions">
-                    <button class="view-report-button" title="View Pricing Strategy Report">View Report</button>
-                </div>
-            </div>
-
-            <!-- Product Category Intelligence Widget -->
-            <div class="kpi-widget product-category enterprise-kpi">
-                <div class="indicator blue-pulse"></div>
-                <div class="kpi-content">
-                    <div class="kpi-header">
-                        <div class="kpi-value">7</div>
-                        <div class="benchmark top-quartile" title="High-Growth Categories">Categories</div>
-                    </div>
-                    <div class="kpi-label">Product Intelligence</div>
-                    <div class="kpi-trend">
-                        <span class="trend-arrow">↑</span>
-                        <span class="trend-value">+14.3%</span>
-                        <span class="trend-label">growth</span>
-                    </div>
-                    <div class="micro-trend sparkline" data-values="8.2,9.5,10.8,11.7,12.5,13.8,14.3" data-labels="Jun,Jul,Aug,Sep,Oct,Nov,Dec" data-color="#007AFF"></div>
-                    <div class="data-context">
-                        <span class="forecast-indicator positive" title="AI-driven forecast">↗ 3.7%</span>
-                        <span class="data-freshness" title="Last updated">20m ago</span>
-                        <div id="product-category-chart"></div>
-                    </div>
-                </div>
-                <div class="kpi-actions">
-                    <button class="view-report-button" title="View Product Category Report">View Report</button>
-                </div>
+            <!-- Widget 5: Data Quality Widget -->
+            <div class="kpi-widget" id="data-widget">
+                <div class="widget-title">Data Quality</div>
+                <div class="kpi-value">94%</div>
+                <div class="kpi-label">Reliability Score</div>
+                <div class="kpi-sparkline"></div>
             </div>
         </section>
 
@@ -328,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Riskill Agents Widget -->
                 <div class="placeholder-widget">
                     <div class="placeholder-header">Riskill Agents</div>
@@ -347,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Data Sources Widget -->
                 <div class="placeholder-widget">
                     <div class="placeholder-header">Data Sources</div>
@@ -374,7 +180,7 @@
                 <div class="main-content-header">
                     <h2>IDP Maritime Intelligence Analysis</h2>
                 </div>
-                
+
                 <!-- Automation Opportunity Analysis Section -->
                 <div class="placeholder-widget">
                     <div class="placeholder-header">
@@ -402,7 +208,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Competitive Advantage Transformation Section -->
                 <div class="placeholder-widget">
                     <div class="placeholder-header">
@@ -460,7 +266,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Opportunities Widget -->
                 <div class="placeholder-widget">
                     <div class="placeholder-header">Opportunities</div>
@@ -481,7 +287,7 @@
                 </div>
             </aside>
         </div>
-        
+
         <!-- Module Row - Maritime Intelligence Modules -->
         <div class="module-row">
             <!-- Risk Engine Module -->
@@ -492,7 +298,7 @@
                 <div class="module-name">RISK ENGINE</div>
                 <div class="module-description">Risk Management Algorithms</div>
             </div>
-            
+
             <!-- Portfolio Analytics Module -->
             <div class="module-item">
                 <div class="module-icon">
@@ -501,7 +307,7 @@
                 <div class="module-name">PORTFOLIO ANALYTICS</div>
                 <div class="module-description">Analytics Tools</div>
             </div>
-            
+
             <!-- Market Intelligence Module -->
             <div class="module-item">
                 <div class="module-icon">
@@ -510,7 +316,7 @@
                 <div class="module-name">MARKET INTELLIGENCE</div>
                 <div class="module-description">Market Intelligence</div>
             </div>
-            
+
             <!-- Operational Metrics Module -->
             <div class="module-item">
                 <div class="module-icon">
@@ -519,7 +325,7 @@
                 <div class="module-name">OPERATIONAL METRICS</div>
                 <div class="module-description">Activity Monitoring</div>
             </div>
-            
+
             <!-- Maritime Routes Module -->
             <div class="module-item">
                 <div class="module-icon">
@@ -528,7 +334,7 @@
                 <div class="module-name">MARITIME ROUTES</div>
                 <div class="module-description">Routes Planning</div>
             </div>
-            
+
             <!-- Fleet Management Module -->
             <div class="module-item">
                 <div class="module-icon">
@@ -543,6 +349,8 @@
     <!-- Include data visualizations scripts -->
     <script src="data-visualizations.js"></script>
     <script src="refined-visualizations.js"></script>
+    <script src="src/components/projects/projects-widget.js"></script>
+    <script src="src/components/widget-tray/widget-tray.js"></script>
     <script src="product-category-visualization.js"></script>
 
     <!-- SQL Modal -->
@@ -640,7 +448,7 @@
         function renderTable(tableId) {
             const tableInfo = tableData[tableId];
             const content = document.getElementById('sql-table-content');
-            
+
             let html = `
                 <div class="sql-table-header">
                     <h3>${tableInfo.title}</h3>
@@ -650,18 +458,18 @@
                     <thead>
                         <tr>
             `;
-            
+
             // Add table headers
             tableInfo.columns.forEach(column => {
                 html += `<th>${column}</th>`;
             });
-            
+
             html += `
                         </tr>
                     </thead>
                     <tbody>
             `;
-            
+
             // Add table rows
             tableInfo.rows.forEach(row => {
                 html += '<tr>';
@@ -670,20 +478,23 @@
                 });
                 html += '</tr>';
             });
-            
+
             html += `
                     </tbody>
                 </table>
             `;
-            
+
             content.innerHTML = html;
         }
 
         // Initialize with transactions table
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Projects widget
+            new ProjectWidget('projects-widget');
+
             // Initialize with transactions table
             renderTable('transactions');
-            
+
             // Handle table item clicks
             const tableItems = document.querySelectorAll('.sql-table-item');
             tableItems.forEach(item => {

@@ -67,29 +67,38 @@ The project is being incrementally reorganized into a more maintainable structur
 ```
 src/
 ├── components/        # UI components organized by feature
-│   ├── projects/      # Project Stratification widget
+│   ├── projects/      # Project stratification widget
 │   │   ├── docs/      # Component documentation
-│   │   │   └── README.md  # Technical documentation
-│   │   ├── projects-widget.js
-│   │   └── projects-widget.css
-│   ├── business-units/  # Business Unit widget (planned)
-│   ├── customers/       # Customer Segment widget (planned)
-│   ├── suppliers/       # Supplier Network widget (planned)
-│   ├── employees/       # Employee Specialization widget (planned)
-│   ├── premium-projects/  # Ultra-Premium Projects widget (planned)
-│   ├── pricing/         # Pricing Strategy widget (planned)
-│   └── products/        # Product Category widget (planned)
-├── styles/           # Global and shared styles
-├── utils/            # Utility functions
-├── assets/           # Images, icons, and other assets
-└── data/             # Data files and mock APIs
+│   │   ├── css/       # Component-specific styles
+│   │   └── js/        # Component-specific scripts
+│   ├── widget-tray/   # Widget tray system for managing KPI widgets
+│   │   ├── css/       # Tray-specific styles
+│   │   └── js/        # Tray-specific scripts
+│   ├── business-units/
+│   ├── customers/
+│   └── ...
+├── styles/            # Global and shared styles
+├── utils/             # Utility functions
+├── assets/            # Images, icons, and other assets
+└── data/              # Data files and mock APIs
 ```
 
-### Component Documentation
+### New Components (in-progress)
 
-Each component has its own documentation in its respective directory:
+### Projects Widget
+- Redesigned as a card-based widget
+- Displays project stratification metrics
+- Supports manual and auto-rotation of cards
+- Card navigation dots and 3D hover animations
+- See [Projects Widget Documentation](./src/components/projects/docs/README.md)
 
-- [**Projects Widget**](./src/components/projects/docs/README.md): Documentation for the Project Stratification widget
+### Widget Tray System
+- Manages hidden KPI widgets with drag-and-drop functionality
+- Matches aesthetic of other dashboard widgets
+- Enforces exactly 5 widgets in the KPI row at all times
+- Shows minimized widget previews in the tray
+- Persists widget positions using localStorage
+- Located in [Widget Tray Directory](./src/components/widget-tray/)
 
 ## Key Technologies
 - Vite (build tool)

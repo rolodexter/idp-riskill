@@ -29,6 +29,12 @@ This document tracks recent changes, current work, and planned tasks for the IDP
   - Created separate cards for Tera, Giga, Mega, and Standard projects
   - Added transition animations between cards
   - Included project metrics and sparkline placeholders
+- Implemented widget tray system for managing KPI widgets:
+  - Matches aesthetic of other dashboard widgets
+  - Enables drag-and-drop functionality between KPI row and tray
+  - Enforces exactly 5 widgets in the KPI row at all times
+  - Shows minimized widget previews in the tray
+  - Persists widget positions using localStorage
 - Created new `src/index.html` with updated references to reorganized files
 
 ## Current Status
@@ -38,7 +44,12 @@ This document tracks recent changes, current work, and planned tasks for the IDP
   - Documentation files in place
 - Widget overhaul: **In Progress**
   - [Project Stratification widget](./src/components/projects/docs/README.md) prototype implemented
+  - [Widget Tray](./src/components/widget-tray/) implemented for managing KPI widgets
   - Other widgets pending migration
+- UI Enhancements: **In Progress**
+  - Drag-and-drop functionality implemented for KPI widgets
+  - Widget tray system in place for managing hidden widgets
+  - Widget position persistence via localStorage
 - Integration: **In Progress**
   - New [src/index.html](./src/index.html) created with updated references
   - Testing with Vite dev server
@@ -48,6 +59,11 @@ This document tracks recent changes, current work, and planned tasks for the IDP
 - [x] Create [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)
 - [x] Create [WORKLOG.md](./WORKLOG.md) (this file)
 - [x] Create folder structure
+- [x] Implement [Project Stratification widget](./src/components/projects/docs/README.md)
+- [x] Implement [Widget Tray system](./src/components/widget-tray/) for KPI widgets
+- [ ] Implement remaining KPI widgets (Revenue, Business Unit, Customer, Data Quality)
+- [ ] Create technical documentation for each widget
+- [ ] Update all documentation files when changes are made to the codebase
   - [x] [src/components/](./src/components/) with widget subfolders
   - [x] [src/styles/](./src/styles/) for CSS files
   - [x] [src/assets/](./src/assets/) for images and other assets

@@ -11,6 +11,7 @@ Specialized business insights visualization dashboard featuring ultra-minimalist
 
 ### Widgets
 - [**Projects Widget**](./src/components/projects/docs/README.md): Project Stratification widget with card-based UI
+- [**Widget Tray**](./src/components/widget-tray/): System for managing KPI widgets with drag-and-drop functionality
 - Additional widget documentation will be added as components are reorganized
 
 ## Development
@@ -36,6 +37,7 @@ src/
 ├── components/        # UI components organized by feature
 │   ├── projects/      # Project Stratification widget
 │   │   ├── docs/      # Component-specific documentation
+│   ├── widget-tray/   # Widget tray for managing KPI widgets
 │   ├── business-units/
 │   ├── customers/
 │   └── ...

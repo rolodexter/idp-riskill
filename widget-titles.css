@@ -1,0 +1,24 @@
+/* Widget Title Styles */
+.widget-title {
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Adjust KPI widget padding to accommodate title */
+.kpi-widget {
+    padding-top: 24px;
+    position: relative;
+}
+
+/* Ensure Projects widget properly shows title */
+.projects-widget .widget-title {
+    z-index: 5;
+}

@@ -1,0 +1,280 @@
+/* Widget Tray Styles - Matching other KPI widgets */
+.kpi-widget.widget-tray {
+    position: relative;
+    padding-top: 24px; /* Match other widgets to accommodate title */
+    overflow: hidden;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Widget tray interior */
+.widget-tray-content {
+    flex: 1;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 6px;
+    overflow-y: auto;
+    align-content: start;
+    scrollbar-width: none; /* Firefox */
+}
+
+.widget-tray-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* Empty tray state */
+.widget-tray-empty {
+    grid-column: 1 / -1;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+    text-align: center;
+    margin: auto;
+}
+
+/* Mini widget style */
+.mini-widget {
+    height: 45px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 4px;
+    cursor: grab;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+}
+
+.mini-widget:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mini-widget:active {
+    cursor: grabbing;
+}
+
+.mini-widget-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+
+.mini-widget-value {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.widget-tray-container.tray-collapsed {
+    transform: translateY(calc(100% - 40px));
+}
+
+.widget-tray-container.tray-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+/* Tray handle for dragging */
+.widget-tray-handle {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    cursor: move;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.widget-tray-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.widget-tray-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.widget-tray-control {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.widget-tray-control:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.widget-tray-toggle {
+    content: "−"; /* Minimize symbol */
+}
+
+.tray-collapsed .widget-tray-toggle {
+    content: "+"; /* Expand symbol */
+}
+
+/* Widget tray content */
+.widget-tray-content {
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    min-height: 60px;
+}
+
+/* For when tray is collapsed */
+.widget-tray-container.tray-collapsed .widget-tray-content {
+    display: none;
+}
+
+.widget-tray-container.tray-visible {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.widget-tray-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.widget-tray-header h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.widget-tray-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    line-height: 1;
+}
+
+.widget-tray-close:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.widget-tray-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 50px;
+}
+
+.mini-widget {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.mini-widget:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mini-widget:active {
+    cursor: grabbing;
+}
+
+.mini-widget-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.mini-widget-content {
+    flex: 1;
+}
+
+.mini-widget-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    margin-bottom: 3px;
+}
+
+.mini-widget-description {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* Badge for tray toggle when widgets are present */
+.widget-tray-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: rgba(66, 133, 244, 0.9);
+    color: white;
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+/* Drag and drop styles */
+.widget-drag-ghost {
+    opacity: 0.4;
+}
+
+.widget-drag-chosen {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+/* Transitions for widget dragging */
+.kpi-row .kpi-widget {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-row.sorting .kpi-widget {
+    transition: none;
+}
